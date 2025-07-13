@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CosmoMate by CosmoTalker</title>
+    <!-- Link to the main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons (e.g., share, send) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header with branding and share button -->
+        <header class="chat-header">
+            <h1 class="chat-title">CosmoMate by CosmoTalker</h1>
+            <button id="shareButton" class="share-button" aria-label="Share Conversation">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </header>
+
+        <!-- Chat messages area -->
+        <main class="chat-messages" id="chatMessages">
+            <!-- Initial welcome message from the AI -->
+            <div class="message ai-message">
+                <div class="message-bubble">
+                    <p class="ai-typing" style="width:0; opacity:0;" data-full-text="Hello! I'm CosmoMate. How can I assist you today?"></p>
+                </div>
+            </div>
+            <!-- Messages will be appended here by JavaScript -->
+        </main>
+
+        <!-- Input area for user messages -->
+        <div class="chat-input-area">
+            <textarea id="userInput" placeholder="Type your message..." rows="1"></textarea>
+            <button id="sendButton" class="send-button" aria-label="Send Message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Share Modal (hidden by default) -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeShareModal">&times;</span>
+            <h2>Share Conversation</h2>
+            <p>Copy the link below to share this conversation:</p>
+            <div class="share-link-container">
+                <input type="text" id="shareLinkInput" readonly>
+                <button id="copyShareLink" class="copy-button">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+            </div>
+            <div class="social-share-buttons">
+                <a id="whatsappShare" href="#" target="_blank" class="social-button whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a id="telegramShare" href="#" target="_blank" class="social-button telegram">
+                    <i class="fab fa-telegram-plane"></i> Telegram
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to the main JavaScript file -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
