@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHUVANESH M</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flaticon/1.0.0/flaticon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        /* Header Styling */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        .converter, .video-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .converter input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .converter button, .video-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .converter .open-button {
+            background-color: #007bff;
+        }
+
+        .converter .open-button:hover {
+            background-color: #0056b3;
+        }
+
+        .converter .refresh-button {
+            background-color: #28a745;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .converter .refresh-button:hover {
+            background-color: #218838;
+        }
+
+        .video-container {
+            display: none;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .video-container button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        /* Popup Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        /* WhatsApp and LinkedIn Button Styling - Bottom Right */
+        .social-buttons {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        .social-buttons a {
+            display: block;
+            margin-bottom: 10px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #25D366; /* WhatsApp green */
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-buttons a:hover {
+            background-color: #128C7E; /* Darker WhatsApp green */
+        }
+
+        .social-buttons a.linkedin {
+            background-color: #0077b5; /* LinkedIn blue */
+        }
+
+        .social-buttons a.linkedin:hover {
+            background-color: #005582; /* Darker LinkedIn blue */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar with buttons for popups -->
+    <header>
+        <div>
+            <h1>Application Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="https://bhuvaneshm.in">Home</a></li>
+                <li><a href="https://github.com/bhuvanesh-m-dev">Projects</a></li>
+                <li><a href="https://bhuvaneshm.in/#contact-section">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <center>
+            <p>
+                <a href="https://bhuvaneshm-dev.neocities.org/bhuvaneshm.in/yt" ><img src="img/yt.png" alt="YouTube Ad-Free Converter"></a>
+            </p>
+        </center>
+    </main>
+
+    
+    <!-- Social media buttons -->
+    <div class="social-buttons">
+        <a href="https://wa.me/8072760234" class="whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/bhuvaneshm-developer/" class="linkedin" target="_blank">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+
+    <script>
+        // Open the modal
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+
+        // Close the modal
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
