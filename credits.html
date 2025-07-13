@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Credits in Engineering</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flaticon/1.0.0/flaticon.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+  <style>
+  .a {
+    background-image: url('bgv.jpeg');
+}
+
+    .linkedin-float {
+    position: fixed;
+    bottom: 80px; /* Move it higher to leave space for the upward button */
+    right: 20px;
+    background-color: #0077b5;
+    color: white;
+    padding: 10px;
+    border-radius: 10%;
+    font-size: 25px;
+    z-index: 1000;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .linkedin-float:hover {
+    background-color: #005582;
+  }
+
+  /* Upward floating button */
+  .upward-float {
+    position: fixed;
+    bottom: 10px; /* Below the LinkedIn button */
+    right: 20px;
+    background-color: #000;
+    color: white;
+    padding: 10px;
+    border-radius: 10%;
+    font-size: 25px;
+    z-index: 1000;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .upward-float:hover {
+    background-color: #333;
+  }
+
+  .upward-float i, .linkedin-float i {
+    line-height: 1;
+  }
+
+    /* Navbar buttons aligned to the top-right */
+    .navbar-nav {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
+    .navbar-nav li {
+      display: inline;
+      margin-left: 20px;
+    }
+
+    .navbar-nav li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Center the "About Me" section */
+    .about__container--narrow {
+      text-align: center;
+    }
+
+    /* Center the "PPT Prize" and "Proficiency Prize" sections */
+    .service .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .service .thumbnail {
+      text-align: center;
+      margin: 10px;
+    }
+
+    /* Reduce height and width of the first image in header */
+    .header__content img {
+      width: 90%;
+      height: 80%;
+    }
+
+    /* Name, Age, and Location on the same line */
+    .about__bio {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    /* Style the up-arrow button */
+    .upArrowBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .upArrowBtn:hover {
+      background-color: #333;
+    }
+
+    /* Justify text for the "About Me" paragraph */
+    .about__description {
+      text-align: justify;
+    }
+  </style>
+</head>
+
+<body>
+    <!-- credit Section -->
+    <section id="about-section" class="about">
+      <div class="container text-center about__container--narrow">
+        <div class="page-section">
+          <h2 class="page-section__title">My Credits in Engineering</h2>
+          <img class="page-section__title-style" src="assets/images/title-style.png" alt="">
+          <div class="row gutters-80">
+            <div class="col-md-12 about__content">
+            <a href='img/c-training.jpeg'><img src='img/c-training.jpeg'></a>
+            <a href='img/itc-training.jpeg'><img src='img/itc-training.jpeg'></a>
+            <a href='img/vl.jpeg' width=951 height=674><img src='img/vl.jpeg'></a>
+  
+      <!-- Up Arrow Button -->
+      <button onclick="scrollToTop()" class="upArrowBtn" title="Go to top">↑</button>
+    </div>
+    <a href="https://www.linkedin.com/in/bhuvaneshm-developer/" target="_blank" class="linkedin-float">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://bhuvaneshm.in"class="upward-float">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    
+  
+    <script src="assets/jquery/jquery-3.2.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/mixitup.js"></script>
+    <script>
+      // calling mixitup
+      var mixer = mixitup(".portfolio");
+  
+      // Show the button when the user scrolls down 20px from the top of the document
+      window.onscroll = function() {
+        var sections = ['about-section', 'skill-section', 'award-section', 'contact-section'];
+        var shouldShow = sections.some(function(sectionId) {
+          return document.getElementById(sectionId).getBoundingClientRect().top < window.innerHeight;
+        });
+        document.querySelector('.upArrowBtn').style.display = shouldShow ? 'block' : 'none';
+      };
+  
+      // Scroll to the top when the user clicks on the button
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    </script>
+  </body>
+  
+  </html>
+  
+
