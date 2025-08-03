@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bhuvanesh M - Computer Science Engineering Student and Developer Portfolio with a space theme.">
+    <meta name="keywords" content="Bhuvanesh M, portfolio, developer, engineering, computer science, space, cosmos">
+    <title>Bhuvanesh M - A Cosmic Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://bhuvaneshm.in/logo.gif" type="image/gif">
+</head>
+<body>
+    <!-- Canvas for the 3D starfield background -->
+    <canvas id="starfield"></canvas>
+
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="nav-logo">BHUVANESH M</a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Bhuvanesh M</h1>
+                <p class="hero-subtitle">Computer Science Engineering Student | Software Developer</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="content-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="card">
+                    <p>Open-source contributor and Linux enthusiast passionate about local AI and space-tech. Creator of CosmoTalker (50K+ downloads in 5 months), PyllamaUI (offline LLM UI), Setbian (smart Debian installer), and more. Selected for the State-Level Space Congress after excelling in the regional round.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section">
+            <div class="container">
+                <h2 class="section-title">My Skillset</h2>
+                <div class="card">
+                    <div class="skills-grid">
+                        <div class="skill">
+                            <h3>Languages</h3>
+                            <p>Python, C, Java</p>
+                        </div>
+                        <div class="skill">
+                            <h3>Frontend</h3>
+                            <p>HTML, CSS</p>
+                        </div>
+                        <div class="skill">
+                            <h3>Backend</h3>
+                            <p>Flask, Rest API</p>
+                        </div>
+                        <div class="skill">
+                            <h3>Databases</h3>
+                            <p>MySQL</p>
+                        </div>
+                        <div class="skill">
+                            <h3>Tools & Platforms</h3>
+                            <p>Git, Docker, PyPI, PyCharm, VSCode, Command Line Interface (CLI), Jupiter notebook, Linux</p>
+                        </div>
+                         <div class="skill">
+                            <h3>Machine Learning</h3>
+                            <p>TensorFlow, Scikit-learn, Pandas, PyTorch, numpy, Seaborn</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Constellations of Code</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="img/cosmotalker.png" alt="Project One">
+                        <div class="project-content">
+                            <h3>CosmoTalker</h3>
+                            <p>Developed a Python library offering astronomical data and interactive space exploration tools, used by a global community of developers and researchers.</p>
+                            <a href="https:bhuvaneshm.in/cosmotalker" class="btn-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="img/cosmo4u.png" alt="Project Two">
+                        <div class="project-content">
+                            <h3>Cosmo4U by CosmoTalker</h3>
+                            <p>Engineered Cosmo4U, a system-level application for Debian Linux that enables full-system integration of CosmoTalker’s offline and real-time space exploration tools.</p>
+                             <a href="https://bhuvaneshm.in/cosmo4u" class="btn-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="img/setbian.png" alt="Project Three">
+                        <div class="project-content">
+                            <h3>Setbian for Debian</h3>
+                            <p>Built Setbian, a post-install assistant for Debian-based systems that offers system-level configuration via an interactive interface, reducing manual setup effort.</p>
+                             <a href="https://bhuvaneshm.in/setbian" class="btn-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="img/pyllamaui.png" alt="Project Four">
+                        <div class="project-content">
+                            <h3>PyllamaUI</h3>
+                            <p>Built PyllamaUI, a cross-platform Python-based GUI for local LLMs via Ollama, distributed as a VS Code extension, .deb package, .exe installer, and raw source — enabling fully offline AI chat interaction for developers.</p>
+                             <a href="https://bhuvaneshm.in/pyllamaui" class="btn-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="img/sheetsmart.png" alt="Project Five">
+                        <div class="project-content">
+                            <h3>SheetSmart</h3>
+                            <p>Developed SheetSmart, a lightweight, Python-based student record management system using CSV for persistent storage — enabling users to add, edit, view, and manage academic data easily without a database.</p>
+                             <a href="https://pypi.org/project/sheetsmart" class="btn-link">View Project</a>
+                        </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Achievements</h2>
+                <div class="card">
+                    <ul class="achievements-list">
+                        <li>Invited by the Google Developer Team to Google I/O 2025 — shared my experience on Dev.to. Earned the Android badge within 1 month of joining the platform! <a href="https://dev.to/bhuvaneshm_dev/my-google-io-experience-2025-by-invitation-from-google-developer-team-im4" target="_blank" rel="noopener noreferrer" class="btn-link">Read More</a></li>
+                        <li>CosmoTalker hit 50K+ downloads on PyPI within just 5 months of launch — a major milestone for this lightweight Python library!</li>
+                        <li>Selected to represent at the State-Level Space Congress Meet after qualifying from the Regional Space Congress — a proud achievement in the space and science community.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <div class="container">
+                <h2 class="section-title" style="color: #fff;">Launch a Message</h2>
+                <div class="card" style="background: rgba(255,255,255,0.08); box-shadow: 0 4px 24px rgba(255,255,255,0.08); border-radius: 16px; text-align: center; border: 1px solid rgba(255,255,255,0.2);">
+                    <p style="font-size: 18px; color: #fff; margin-bottom: 18px;">
+                        Whether you're interested in collaborating on innovative projects, discussing tech, or just saying hi — I'm always happy to connect!
+                    </p>
+                    <p style="font-size: 20px; font-weight: bold; color: #fff; margin-bottom: 28px;">
+                        Let’s build something great together. 😊
+                    </p>
+                    <a href="mailto:bhuvaneshm.developer@gmail.com" style="font-size: 18px; color: #fff; margin-bottom: 18px; display: block;">
+                        bhuvaneshm.developer@gmail.com
+                    </a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdZVMdYrRjue9n7jfGaS7UjwwdS7pDzC3eVGG9u9wMX3e7jA/viewform" target="_blank" class="btn btn-primary" style="font-size: 18px; background: #fff; color: #000;">
+                        Send a Message
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                 <a href="https://github.com/bhuvanesh-m-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+                 <a href="https://linkedin.com/in/bhuvaneshm-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                 <a href="https://twitter.com/bhuvaneshm06" target="_blank" rel="noopener noreferrer">Twitter</a>
+                 <a href="https://www.hackerrank.com/profile/bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">Hackerrank</a>
+                 <a href="https://leetcode.com/u/bhuvaneshm_dev/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+                 <a href="https://www.youtube.com/@bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">YouTube</a>
+                 <a href="https://dev.to/bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">Dev.to</a>
+                 <a href="https://g.dev/bhuvaneshm" target="_blank" rel="noopener noreferrer">Google Developer</a>
+            </div>
+            <p>&copy; <span id="currentYear"></span> Bhuvanesh M. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-to-top" title="Go to top">↑</button>
+
+    <!-- Adding the three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
 
