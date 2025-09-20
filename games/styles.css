@@ -17,6 +17,18 @@ body::before {
   opacity: 0.25;
 }
 
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: block;
+  pointer-events: none;
+  background: transparent;
+}
+
 .portal-header {
   text-align: center;
   padding: 2rem 1rem 1rem 1rem;
