@@ -1,4 +1,4 @@
-  // Smooth hover/tap effect for mobile
+// Smooth hover/tap effect for mobile
 const cards = document.querySelectorAll('.game-card');
 cards.forEach(card => {
   card.addEventListener('touchstart', () => {
