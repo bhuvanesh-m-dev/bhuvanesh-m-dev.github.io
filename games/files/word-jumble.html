@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Jumble Detectives - Team Edition</title>
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
+            background-color: #1a202c;
+            color: #f3f4f6;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        #game-container {
+            background: #2d3748;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 32px 0 rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 32rem;
+            text-align: center;
+            transition: box-shadow 0.5s, background 0.5s;
+        }
+        h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #7c3aed;
+        }
+        .team-btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: bold;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border: none;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+        #boy-team-btn {
+            background: #2563eb;
+            color: #fff;
+        }
+        #boy-team-btn:hover:enabled {
+            background: #1d4ed8;
+        }
+        #girl-team-btn {
+            background: #ec4899;
+            color: #fff;
+        }
+        #girl-team-btn:hover:enabled {
+            background: #db2777;
+        }
+        .score-card {
+            background: #374151;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(124, 58, 237, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        }
+        .score-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .score-flex .team {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .score-flex .vs {
+            font-size: 2rem;
+            color: #9ca3af;
+            font-weight: bold;
+        }
+        .text-blue-400 { color: #60a5fa; }
+        .text-pink-400 { color: #f472b6; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-indigo-400 { color: #7c3aed; }
+        .bg-gray-700 { background: #374151; }
+        .rounded-xl { border-radius: 1rem; }
+        .shadow-inner { box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+        .font-extrabold { font-weight: 800; }
+        .tracking-widest { letter-spacing: 0.15em; }
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .font-medium { font-weight: 500; }
+        .font-bold { font-weight: bold; }
+        .rounded-lg { border-radius: 0.75rem; }
+        .shadow-lg { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .transition-colors { transition: background 0.3s; }
+        .duration-300 { transition-duration: 0.3s; }
+        .w-full { width: 100%; }
+        .text-2xl { font-size: 1.5rem; }
+        .h-8 { height: 2rem; }
+        .hidden { display: none; }
+        .flex { display: flex; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .max-w-lg { max-width: 32rem; }
+        .min-h-screen { min-height: 100vh; }
+        .bg-black { background: #000; }
+        .bg-opacity-75 { background: rgba(0,0,0,0.75); }
+        .z-50 { z-index: 50; }
+        .fixed { position: fixed; }
+        .inset-0 { top: 0; left: 0; right: 0; bottom: 0; }
+        .shadow-2xl { box-shadow: 0 10px 32px 0 rgba(0,0,0,0.3); }
+        .max-w-sm { max-width: 24rem; }
+        .bg-indigo-600 { background: #4f46e5; }
+        .bg-indigo-700 { background: #4338ca; }
+        .bg-blue-600 { background: #2563eb; }
+        .bg-blue-700 { background: #1d4ed8; }
+        .bg-pink-600 { background: #ec4899; }
+        .bg-pink-700 { background: #db2777; }
+        .opacity-50 { opacity: 0.5; }
+        .focus\:outline-none:focus { outline: none; }
+        .focus\:ring-2:focus { box-shadow: 0 0 0 2px #7c3aed; }
+        .focus\:ring-indigo-500:focus { box-shadow: 0 0 0 2px #6366f1; }
+        .placeholder-gray-400::placeholder { color: #9ca3af; }
+        .sm\:text-4xl { font-size: 2.25rem; }
+        .sm\:text-2xl { font-size: 1.5rem; }
+        .sm\:w-auto { width: auto; }
+        .sm\:space-y-0 > * + * { margin-top: 0; }
+        .sm\:space-x-4 > * + * { margin-left: 1rem; }
+        .flex-grow { flex-grow: 1; }
+        @media (min-width: 640px) {
+            .sm\:text-4xl { font-size: 2.5rem; }
+            .sm\:text-2xl { font-size: 1.75rem; }
+            .sm\:w-auto { width: auto; }
+            .sm\:space-y-0 > * + * { margin-top: 0; }
+            .sm\:space-x-4 > * + * { margin-left: 1rem; }
+        }
+        input[type="text"]#user-guess {
+            height: 3.5rem;
+            font-size: 1.5rem;
+            padding: 1rem;
+        }
+        #submit-btn {
+            height: 3.5rem;
+            font-size: 1.35rem;
+            padding: 1.2rem 2.8rem;
+            background: #6366f1;
+            border: 2px solid #7c3aed;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            transition: background 0.2s, border 0.2s;
+        }
+        #submit-btn:hover:enabled {
+            background: #7c3aed;
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Game Container -->
+    <div id="game-container">
+        <h1>Word Jumble Detectives</h1>
+        <!-- Team Selection -->
+        <div id="team-selection" class="flex justify-center space-x-4 mb-6">
+            <button id="boy-team-btn" class="team-btn">Boy Team</button>
+            <button id="girl-team-btn" class="team-btn">Girl Team</button>
+        </div>
+        <!-- Current Team Indicator -->
+        <div id="current-team-indicator" class="text-xl font-bold mb-4 hidden">
+            <span id="team-name" class="text-indigo-400"></span>'s Turn
+        </div>
+        <!-- Score Card -->
+        <div class="score-card mb-6">
+            <div class="score-flex">
+                <div class="team text-blue-400">Boy Team: <span id="boy-score-display" class="text-2xl">0</span></div>
+                <div class="vs">VS</div>
+                <div class="team text-pink-400">Girl Team: <span id="girl-score-display" class="text-2xl">0</span></div>
+            </div>
+        </div>
+        <!-- Word Progress -->
+        <div class="text-lg sm:text-xl font-medium text-gray-400 mb-6">
+            Word <span id="word-number">1</span> of 25
+        </div>
+        <!-- Clue Display -->
+        <div id="clue-container" class="bg-gray-700 p-4 rounded-xl mb-6 shadow-inner">
+            <p id="clue-text" class="text-lg sm:text-xl font-light text-gray-300"></p>
+        </div>
+        <!-- Jumbled Word Display -->
+        <div id="jumbled-word-container" class="bg-gray-700 p-6 rounded-xl mb-6 shadow-inner">
+            <h2 id="jumbled-text" class="text-4xl sm:text-5xl font-extrabold text-white tracking-widest"></h2>
+        </div>
+        <!-- User Input and Controls -->
+        <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
+            <input type="text" id="user-guess" class="flex-grow w-full sm:w-auto bg-gray-700 text-gray-100 p-3 rounded-lg text-lg text-center font-medium placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Type your guess here...">
+            <button id="submit-btn" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-lg transition-colors duration-300" disabled>Check</button>
+        </div>
+        <!-- Feedback Message -->
+        <p id="feedback" class="text-lg font-semibold h-8"></p>
+        <!-- Message Box -->
+        <div id="message-box" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50">
+            <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl text-center max-w-sm w-full">
+                <h3 id="message-box-title" class="text-2xl font-bold mb-4 text-white"></h3>
+                <p id="message-box-text" class="text-lg text-gray-300 mb-6"></p>
+                <button id="message-box-btn" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-lg transition-colors duration-300">Okay</button>
+            </div>
+        </div>
+        <div class="flex justify-center mt-4">
+            <span class="text-gray-400 text-lg font-medium">Developed with love ❤️ by BHUVANESH M</span>
+        </div>
+    </div>
+    <script>
+        // Array of words and their corresponding clues
+        const words = [
+    { answer: 'ASTRONAUT', clue: 'A person trained to travel in space.' },
+    { answer: 'PYTHON', clue: 'A popular programming language named after a snake.' },
+    { answer: 'RAINBOW', clue: 'A colorful arc seen after rain.' },
+    { answer: 'VOLCANO', clue: 'A mountain that erupts with lava.' },
+    { answer: 'CAMERA', clue: 'A device used to take photographs.' },
+    { answer: 'SANDWICH', clue: 'Food made by placing fillings between slices of bread.' },
+    { answer: 'DIAMOND', clue: 'A precious stone, hardest known material.' },
+    { answer: 'UMBRELLA', clue: 'Used for protection against rain.' },
+    { answer: 'PIANO', clue: 'A musical instrument with black and white keys.' },
+    { answer: 'ROBOT', clue: 'A machine capable of carrying out complex actions.' },
+    { answer: 'CIRCUS', clue: 'A show with clowns, acrobats, and animals.' },
+    { answer: 'TIGER', clue: 'A large wild cat with stripes.' },
+    { answer: 'SATELLITE', clue: 'An object that orbits a planet.' },
+    { answer: 'MAGNET', clue: 'An object that attracts iron.' },
+    { answer: 'PASSPORT', clue: 'A document needed for international travel.' },
+    { answer: 'PYRAMID', clue: 'A monumental structure in Egypt.' },
+    { answer: 'BAMBOO', clue: 'A tall, woody grass eaten by pandas.' },
+    { answer: 'ECLIPSE', clue: 'When the sun or moon is hidden.' },
+    { answer: 'TOURNAMENT', clue: 'A series of contests to determine a winner.' },
+    { answer: 'STETHOSCOPE', clue: 'A tool used by doctors to listen to the heart.' },
+    { answer: 'SUBMARINE', clue: 'A vessel that travels underwater.' },
+    { answer: 'PARACHUTE', clue: 'Used to slow down a fall from the sky.' },
+    { answer: 'THERMOMETER', clue: 'An instrument for measuring temperature.' },
+    { answer: 'DINOSAUR', clue: 'A prehistoric reptile.' },
+    { answer: 'CROCODILE', clue: 'A large reptile with a long snout and sharp teeth.' }
+];
+
+        let boyScore = 0;
+        let girlScore = 0;
+        let currentTeam = null; // 'boy' or 'girl'
+        let currentWordIndex = 0;
+        const totalWords = words.length;
+        let attemptTeam = null; // Track which team is currently attempting
+
+        // DOM elements
+        const clueText = document.getElementById('clue-text');
+        const jumbledText = document.getElementById('jumbled-text');
+        const userGuessInput = document.getElementById('user-guess');
+        const submitBtn = document.getElementById('submit-btn');
+        const feedbackMessage = document.getElementById('feedback');
+        const boyScoreDisplay = document.getElementById('boy-score-display');
+        const girlScoreDisplay = document.getElementById('girl-score-display');
+        const wordNumberDisplay = document.getElementById('word-number');
+        const messageBox = document.getElementById('message-box');
+        const messageBoxTitle = document.getElementById('message-box-title');
+        const messageBoxText = document.getElementById('message-box-text');
+        const messageBoxBtn = document.getElementById('message-box-btn');
+        const currentTeamIndicator = document.getElementById('current-team-indicator');
+        const teamName = document.getElementById('team-name');
+        const boyTeamBtn = document.getElementById('boy-team-btn');
+        const girlTeamBtn = document.getElementById('girl-team-btn');
+        const gameContainer = document.getElementById('game-container');
+
+        // Function to shuffle letters of a word
+        function shuffleWord(word) {
+            return word.split('').sort(() => 0.5 - Math.random()).join('');
+        }
+
+        // Function to set UI color theme based on team
+        function setTeamTheme(team) {
+            if (team === 'boy') {
+                gameContainer.classList.remove('bg-pink-100', 'bg-pink-600', 'border-pink-400');
+                gameContainer.classList.add('bg-blue-900', 'border-blue-400');
+                gameContainer.style.boxShadow = '0 0 40px 0 #3b82f6';
+            } else if (team === 'girl') {
+                gameContainer.classList.remove('bg-blue-900', 'bg-blue-600', 'border-blue-400');
+                gameContainer.classList.add('bg-pink-100', 'border-pink-400');
+                gameContainer.style.boxShadow = '0 0 40px 0 #ec4899';
+            } else {
+                gameContainer.classList.remove('bg-blue-900', 'bg-pink-100', 'border-blue-400', 'border-pink-400');
+                gameContainer.style.boxShadow = '';
+            }
+        }
+
+        // Function to load a new word
+        function loadNewWord() {
+            if (currentWordIndex >= totalWords) {
+                // Game over
+                showMessageBox('Game Over!', `Final Scores:\n\nBoy Team: ${boyScore}\nGirl Team: ${girlScore}\n\nTotal Correct: ${boyScore + girlScore} out of ${totalWords}. Great job!`);
+                return;
+            }
+
+            const currentWord = words[currentWordIndex];
+            clueText.textContent = currentWord.clue;
+            jumbledText.textContent = shuffleWord(currentWord.answer);
+            userGuessInput.value = '';
+            feedbackMessage.textContent = '';
+            wordNumberDisplay.textContent = currentWordIndex + 1;
+            userGuessInput.disabled = true;
+            submitBtn.disabled = true;
+            currentTeam = null;
+            attemptTeam = null;
+            currentTeamIndicator.classList.add('hidden');
+            boyTeamBtn.disabled = false;
+            girlTeamBtn.disabled = false;
+            boyTeamBtn.classList.remove('opacity-50');
+            girlTeamBtn.classList.remove('opacity-50');
+            setTeamTheme(null);
+        }
+
+        // Function to show the custom message box
+        function showMessageBox(title, text) {
+            messageBoxTitle.textContent = title;
+            messageBoxText.textContent = text;
+            messageBox.classList.remove('hidden');
+            messageBox.classList.add('flex');
+            userGuessInput.disabled = true;
+            submitBtn.disabled = true;
+            boyTeamBtn.disabled = true;
+            girlTeamBtn.disabled = true;
+        }
+
+        // Function to hide the custom message box
+        function hideMessageBox() {
+            messageBox.classList.remove('flex');
+            messageBox.classList.add('hidden');
+            userGuessInput.disabled = false;
+            submitBtn.disabled = false;
+            boyTeamBtn.disabled = false;
+            girlTeamBtn.disabled = false;
+        }
+
+        // Team selection function
+        function selectTeam(team) {
+            if (currentTeam) {
+                return; // If a team is already selected, don't allow changing
+            }
+            currentTeam = team;
+            attemptTeam = team;
+            userGuessInput.disabled = false;
+            submitBtn.disabled = false;
+            if (team === 'boy') {
+                teamName.textContent = 'Boy Team';
+                teamName.className = 'text-blue-400 font-bold';
+                currentTeamIndicator.classList.remove('hidden');
+                boyTeamBtn.classList.add('opacity-50');
+                girlTeamBtn.classList.add('opacity-50');
+                setTeamTheme('boy');
+            } else {
+                teamName.textContent = 'Girl Team';
+                teamName.className = 'text-pink-400 font-bold';
+                currentTeamIndicator.classList.remove('hidden');
+                boyTeamBtn.classList.add('opacity-50');
+                girlTeamBtn.classList.add('opacity-50');
+                setTeamTheme('girl');
+            }
+            boyTeamBtn.disabled = true;
+            girlTeamBtn.disabled = true;
+        }
+
+        // Event listeners for team selection
+        boyTeamBtn.addEventListener('click', () => {
+            selectTeam('boy');
+        });
+        girlTeamBtn.addEventListener('click', () => {
+            selectTeam('girl');
+        });
+
+        // Event listener for the submit button
+        submitBtn.addEventListener('click', () => {
+            if (!currentTeam) {
+                feedbackMessage.textContent = 'Please select a team first!';
+                feedbackMessage.className = 'text-lg font-semibold h-8 text-yellow-400';
+                return;
+            }
+            const userGuess = userGuessInput.value.toUpperCase().trim();
+            const correctAnswer = words[currentWordIndex].answer;
+            if (userGuess === correctAnswer) {
+                if (currentTeam === 'boy') {
+                    boyScore++;
+                    boyScoreDisplay.textContent = boyScore;
+                } else {
+                    girlScore++;
+                    girlScoreDisplay.textContent = girlScore;
+                }
+                feedbackMessage.textContent = 'Correct! Great job.';
+                feedbackMessage.className = 'text-lg font-semibold h-8 text-green-400';
+                currentWordIndex++;
+                setTimeout(loadNewWord, 1000);
+            } else {
+                // Switch to other team for retry
+                if (attemptTeam === 'boy') {
+                    attemptTeam = 'girl';
+                    currentTeam = 'girl';
+                    teamName.textContent = 'Girl Team';
+                    teamName.className = 'text-pink-400 font-bold';
+                    setTeamTheme('girl');
+                } else {
+                    attemptTeam = 'boy';
+                    currentTeam = 'boy';
+                    teamName.textContent = 'Boy Team';
+                    teamName.className = 'text-blue-400 font-bold';
+                    setTeamTheme('boy');
+                }
+                feedbackMessage.textContent = 'Incorrect. Now it\'s ' + (currentTeam === 'boy' ? 'Boy Team' : 'Girl Team') + '\'s turn!';
+                feedbackMessage.className = 'text-lg font-semibold h-8 text-red-400';
+                submitBtn.disabled = false;
+                boyTeamBtn.disabled = true;
+                girlTeamBtn.disabled = true;
+            }
+        });
+
+        // Event listener for the message box button
+        messageBoxBtn.addEventListener('click', () => {
+            hideMessageBox();
+            if (currentWordIndex >= totalWords) {
+                currentWordIndex = 0;
+                boyScore = 0;
+                girlScore = 0;
+                boyScoreDisplay.textContent = boyScore;
+                girlScoreDisplay.textContent = girlScore;
+                loadNewWord();
+            }
+        });
+
+        window.onload = function() {
+            submitBtn.disabled = true;
+            loadNewWord();
+        };
+
+        userGuessInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && !submitBtn.disabled) {
+                submitBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
