@@ -19,4 +19,4 @@ Some of the content, features, and visuals you see here are **not final** and ma
 
 ---
 
-Thank you for your patience and understanding while we continue building this project 🙌  
+Thank you for your patience and understanding while I continue building this project 🙌  
