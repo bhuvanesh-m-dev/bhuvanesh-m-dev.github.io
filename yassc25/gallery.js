@@ -3,7 +3,7 @@ class Gallery {
         this.initializeGallery();
         this.currentImageIndex = 0;
         this.images = [];
-        this.createDescriptionPopup();
+        this.initializeEventListeners();
     }
 
     initializeGallery() {
@@ -15,6 +15,79 @@ class Gallery {
         
         // Add scroll animation
         this.addScrollAnimation();
+        
+        // Initialize Read More functionality
+        this.initializeReadMore();
+    }
+
+    initializeReadMore() {
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const overlay = button.closest('.gallery-item-overlay');
+                const fullDesc = overlay.querySelector('.gallery-item-full-description');
+
+                if (fullDesc) {
+                    this.openReadMorePopup(fullDesc.innerHTML, overlay.querySelector('.gallery-item-title').textContent);
+                }
+            });
+        });
+    }
+
+    openReadMorePopup(content, title) {
+        if (!this.readMorePopup) {
+            this.createReadMorePopup();
+        }
+
+        const popup = this.readMorePopup;
+        popup.querySelector('.popup-title').textContent = title;
+        popup.querySelector('.popup-content').innerHTML = content;
+
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeReadMorePopup() {
+        if (this.readMorePopup) {
+            this.readMorePopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    createReadMorePopup() {
+        const popup = document.createElement('div');
+        popup.className = 'read-more-popup';
+        popup.innerHTML = `
+            <div class="popup-header">
+                <h3 class="popup-title"></h3>
+                <button class="popup-close">×</button>
+            </div>
+            <div class="popup-content"></div>
+        `;
+
+        document.body.appendChild(popup);
+        this.readMorePopup = popup;
+
+        popup.querySelector('.popup-close').addEventListener('click', () => {
+            this.closeReadMorePopup();
+        });
+
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                this.closeReadMorePopup();
+            }
+        });
+    }
+
+    initializeEventListeners() {
+        // Close popup with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeDescriptionPopup();
+            }
+        });
     }
 
     createLightbox() {
@@ -64,46 +137,71 @@ class Gallery {
     }
 
     createDescriptionPopup() {
-        const popup = document.createElement('div');
-        popup.className = 'description-popup';
-        popup.innerHTML = `
-            <div class="description-popup-content">
-                <h3 class="description-popup-title"></h3>
-                <div class="description-popup-text"></div>
-                <button class="description-popup-close">×</button>
-            </div>
-        `;
-        document.body.appendChild(popup);
-        
-        this.descriptionPopup = popup;
-        popup.querySelector('.description-popup-close').addEventListener('click', () => {
-            this.closeDescriptionPopup();
-        });
-        
-        // Close on background click
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) this.closeDescriptionPopup();
-        });
+        // Create popup if it doesn't exist
+        if (!this.descriptionPopup) {
+            const popup = document.createElement('div');
+            popup.className = 'description-popup';
+            popup.innerHTML = `
+                <div class="description-popup-content">
+                    <h3 class="description-popup-title"></h3>
+                    <div class="description-popup-text"></div>
+                    <button class="description-popup-close">×</button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            
+            this.descriptionPopup = popup;
+            
+            // Add event listener for close button
+            const closeBtn = popup.querySelector('.description-popup-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.closeDescriptionPopup();
+                });
+            }
+            
+            // Close on background click
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    this.closeDescriptionPopup();
+                }
+            });
+        }
     }
 
     initializeItems() {
         const galleryItems = document.querySelectorAll('.gallery-item');
-        this.images = Array.from(galleryItems).map(item => ({
-            src: item.querySelector('img').src,
-            title: item.querySelector('.gallery-item-title')?.textContent || '',
-            description: item.querySelector('.gallery-item-description')?.textContent || '',
-            fullDescription: item.querySelector('.gallery-item-full-description')?.innerHTML || ''
-        }));
+        
+        this.images = Array.from(galleryItems).map(item => {
+            const fullDescriptionEl = item.querySelector('.gallery-item-full-description');
+            return {
+                src: item.querySelector('img').src,
+                title: item.querySelector('.gallery-item-title')?.textContent || '',
+                description: item.querySelector('.gallery-item-description')?.textContent || '',
+                fullDescription: fullDescriptionEl ? fullDescriptionEl.innerHTML : ''
+            };
+        });
 
         galleryItems.forEach((item, index) => {
+            // Add click event for the Read More button
             const readMoreBtn = item.querySelector('.read-more');
             if (readMoreBtn) {
                 readMoreBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
                     e.stopPropagation();
                     this.openDescriptionPopup(index);
                 });
             }
-            item.addEventListener('click', () => this.openLightbox(index));
+
+            // Add click event for the image to open lightbox
+            const image = item.querySelector('img');
+            if (image) {
+                image.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.openLightbox(index);
+                });
+            }
         });
     }
 
@@ -125,17 +223,40 @@ class Gallery {
     }
 
     openDescriptionPopup(index) {
+        if (!this.descriptionPopup) {
+            this.createDescriptionPopup();
+        }
+
         const image = this.images[index];
+        if (!image) return;
+
         const popup = this.descriptionPopup;
-        popup.querySelector('.description-popup-title').textContent = image.title;
-        popup.querySelector('.description-popup-text').innerHTML = image.fullDescription;
-        popup.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        const titleEl = popup.querySelector('.description-popup-title');
+        const textEl = popup.querySelector('.description-popup-text');
+
+        if (titleEl) titleEl.textContent = image.title;
+        if (textEl) textEl.innerHTML = image.fullDescription;
+
+        // Add active class with a slight delay to ensure smooth animation
+        requestAnimationFrame(() => {
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
     }
 
     closeDescriptionPopup() {
+        if (!this.descriptionPopup) return;
+
         this.descriptionPopup.classList.remove('active');
         document.body.style.overflow = '';
+        
+        // Clear content after animation
+        setTimeout(() => {
+            const titleEl = this.descriptionPopup.querySelector('.description-popup-title');
+            const textEl = this.descriptionPopup.querySelector('.description-popup-text');
+            if (titleEl) titleEl.textContent = '';
+            if (textEl) textEl.innerHTML = '';
+        }, 300); // Match the CSS transition duration
     }
 
     addScrollAnimation() {
