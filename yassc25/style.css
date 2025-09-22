@@ -248,6 +248,67 @@ a:hover {
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
 }
 
+/* Scroll to top button */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.005);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    animation: bounce 0.8s ease-in-out infinite;
+}
+
+.scroll-top-btn svg {
+    width: 24px;
+    height: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+}
+
+.scroll-top-btn:hover svg {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+    .scroll-top-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
 /* Footer styling */
 footer {
     text-align: center;
