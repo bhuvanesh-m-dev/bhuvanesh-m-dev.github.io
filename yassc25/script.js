@@ -1,5 +1,25 @@
 // Initialize animations when elements come into view
 document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to top button functionality
+    const scrollButton = document.getElementById('scrollToTop');
+    
+    function toggleScrollButton() {
+        if (window.scrollY > 500) {
+            scrollButton.classList.add('visible');
+        } else {
+            scrollButton.classList.remove('visible');
+        }
+    }
+
+    window.addEventListener('scroll', toggleScrollButton);
+    
+    scrollButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
     // Function to handle scroll animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
