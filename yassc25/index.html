@@ -1,130 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Journey with CosmoTalker</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Starry background is created via CSS pseudo-elements -->
+// Initialize animations when elements come into view
+document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to top button functionality
+    const scrollButton = document.getElementById('scrollToTop');
     
-    <div class="container">
-        <header>
-            <h1>My Journey with CosmoTalker</h1>
-            <p class="subtitle">A cosmic adventure from stargazing dreams to creating an AI that connects humanity with the universe</p>
-        </header>
+    function toggleScrollButton() {
+        if (window.scrollY > 500) {
+            scrollButton.classList.add('visible');
+        } else {
+            scrollButton.classList.remove('visible');
+        }
+    }
 
-        <main>
-            <section id="cosmic-beginning">
-                <h2>A Cosmic Beginning</h2>
-                <div class="cosmic-line"></div>
-                <p>From childhood, I have been deeply fascinated by the cosmos — stars, the moon, and the mysteries of space. This early curiosity shaped my interests and later guided my academic and professional journey.</p>
-                <img src="assests/img1.png" alt="test image" width="750" height="500">
-            </section>
+    window.addEventListener('scroll', toggleScrollButton);
+    
+    scrollButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 
-            <section id="grade-11">
-                <h2>✨Grade 11: The Spark</h2>
-                <div class="cosmic-line"></div>
-                <p>In Grade 11, I was introduced to programming through Python, my very first programming language. Although many of my peers and seniors were already ahead in the field, my passion enabled me to quickly catch up. By the end of that year, I secured the Topper Award in Computer Science.</p>
-                
-                <p>During this time, I was particularly drawn to practical aspects of learning — creating small programs, experimenting with gaming logic, and connecting mathematics with computation. While theory had its place, my inclination was toward hands-on exploration. By Grade 12, I had decided to pursue my career as a software developer, building on skills such as MySQL to strengthen my practical foundation.</p>
-                
-                <img src="assests/img2.png" alt="test image" width="750" height="500">
-            </section>
+    // Function to handle scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
 
-            <section id="college-challenges">
-                <h2>📘College Challenges</h2>
-                <div class="cosmic-line"></div>
-                <p>I joined Engineering College, affiliated with Anna University, to pursue a B.E. in Computer Science and Engineering. The first semester, however, was dominated by theory-based subjects, which felt restrictive and unengaging. Despite this challenge, I remained determined to pursue practical innovation.</p>
-                
-                
-            </section>
+    // Observe all sections and header elements
+    document.querySelectorAll('section, header h1, header .subtitle').forEach(element => {
+        observer.observe(element);
+    });
 
-            <section id="birth">
-                <h2>🚀The Birth of CosmoTalker</h2>
-                <div class="cosmic-line"></div>
-                <p>A breakthrough came on March 2, 2025, when I deployed the first edition of CosmoTalker, a Python library that unified my three passions: mathematics, the cosmos, and computing.</p>
-                
-                <div class="milestone">
-                    <strong>Within 9 days:</strong> CosmoTalker reached 1,200 downloads with zero marketing—students sharing it like a cosmic secret. <a href="#" class="highlight">My LinkedIn post about the launch went unexpectedly viral</a>, catching the attention of astronomy educators across the country.
-                </div>
-                
-                <p>Until then, I believed that only large organizations like the Python Software Foundation could create such libraries. CosmoTalker proved otherwise. It was my personal project, deployed on PyPI, and made available for global download.
-                
-                    <div class="milestone">
-                        <strong>The impact was immediate :</strong>This milestone not only validated my work but also inspired me to aim higher.</p>
-                    </div>
-                
-            </section>
+    // Add subtle hover effect to media placeholders
+    const placeholders = document.querySelectorAll('.media-placeholder');
+    placeholders.forEach(placeholder => {
+        placeholder.addEventListener('mouseenter', function() {
+            this.style.borderColor = '#555';
+            this.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.1)';
+        });
+        
+        placeholder.addEventListener('mouseleave', function() {
+            this.style.borderColor = '#333';
+            this.style.boxShadow = 'none';
+        });
+    });
 
-            <section id="yssc">
-                <h2>🛰️YASSC 2025</h2>
-                <div class="cosmic-line"></div>
-                <p>Around this time, I learned about YASSC 2025 (Youth Astronomy and Space Science Congress by Tamil Nadu Astronomy and Science Society). I decided to participate with a close school friend. On July 27, 2025, at Prathyusha Engineering College, we competed at the district level, my friend in astrophotography and I in paper presentation.</p>
-                
-                <p>My paper on CosmoTalker advanced to the state level, while my friend’s work was not selected. For the state level, we worked together, I focused on enhancing CosmoTalker with offline AI integration (which later evolved into Oolit), while my friend contributed with research support and documentation.</p>
-                
-                <p>Initially, our first submission was rejected due to formatting issues and a high AI-generated content percentage. We restructured and rewrote the entire work manually. Upon resubmission, our paper passed with 3% plagiarism and 0% AI content, meeting all academic integrity standards. We officially received acceptance to present at the state-level YASSC 2025.</p>
-                
-                
-            </section>
+    // Add subtle animation to milestone highlights
+    setTimeout(() => {
+        document.querySelectorAll('.milestone').forEach(milestone => {
+            milestone.style.transform = 'translateX(0)';
+            milestone.style.opacity = '1';
+        });
+    }, 300);
+});
 
-            <section id="sivakasi">
-                <h2>🚌The Sivakasi Adventure</h2>
-                <div class="cosmic-line"></div>
-                <p>The state-level conference was scheduled from August 15–17, 2025, at Sri Kaliswari College of Arts and Sciences, Sivakasi. Despite the challenges of travel during the festival season — with tripled fares and delayed arrivals — we reached Sivakasi late on August 15 (around 3.30pm after 18 hrs of journey!). On August 16, 2025, We presented our paper in the afternoon session.(around 3pm)</p>
-                
-                
-                
-            </section>
-
-            <section id="triumph">
-                <h2>🏅The Moment of Triumph</h2>
-                <div class="cosmic-line"></div>
-                <p>The final day, August 17, 2025, was historic. Distinguished scientists attended the event, including the “Moon Man of India” — Project Director of Chandrayaan-1 & 2 and Mangalyaan, and former Director at ISRO.</p>
-
-                <p>At around 3:30 PM, recognitions were announced. Initially, We believed we had missed our chance, as most participants were already called. But to our surprise, our project was honored. Receiving a medal directly from the Moon Man of India was a defining and unforgettable moment in my journey.</p>
-                
-                <div class="milestone">
-                    <strong>CosmoTalker deployed :</strong> March 2, 2025
-                </div>
-                
-                <div class="milestone">
-                    <strong>YASSC State Level :</strong> August 15-17, 2025
-                </div>
-
-                <div class="milestone">
-                    <strong>Best Submission recognition :</strong> August 17, 2025
-                </div>
-
-                <div class="milestone">
-                    <strong>Gap :</strong> 168 days
-                </div>
-                
-            </section>
-
-            <section id="legacy">
-                <h2>🌠The Legacy of CosmoTalker</h2>
-                <div class="cosmic-line"></div>
-                <p>That recognition solidified my path. Today, CosmoTalker continues to evolve, achieving 50K+ downloads worldwide (including mirrors). It stands as the first cosmic-themed Python library, enhanced with offline features and expanding with online capabilities.</p>
-                
-                <p>This project has also been a collaborative learning experience. My friend, originally from a biology background with no programming exposure, learned and contributed significantly through this journey — especially in research and paper preparation.</p>
-                
-                <p>CosmoTalker represents not only my personal vision but also the merging of cosmic curiosity, mathematical reasoning, and computer science innovation. It is a living project, continuing to grow and inspire.</p>
-                <div class="milestone">
-                    <strong>Looking ahead :</strong> CosmoTalker's vision includes multilingual support for 20+ Indian languages and partnerships with ISRO to bring real-time mission data to classrooms nationwide...
-                </div>
-                
-                
-            </section>
-        </main>
-
-        <footer>
-            <p>© BHUVANESH M. All rights reserved.</p>
-            <p>Designed with stardust and determination</p>
-        </footer>
-    </div>
-
-    <script src="script.js"></script></body>
-</html>
+// Add smooth scrolling for anchor links (if we had any)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
