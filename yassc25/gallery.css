@@ -333,23 +333,30 @@
 }
 
 .read-more-popup .popup-close {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    font-size: 1.2rem;
-    width: 30px;
-    height: 30px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    color: #333;
+    font-size: 1.5rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    padding: 0;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 .read-more-popup .popup-close:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #fff;
     transform: rotate(90deg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
 }
 
 .read-more-popup .popup-content {
