@@ -351,12 +351,16 @@ h1.cosmic-glow {
         top: 5rem; /* Adjusted for taller announcement bar on mobile */
     }
     
+    .navbar.announcement-hidden {
+        top: 0;
+    }
+    
     #hero-section {
-        padding-top: 160px; /* Extra padding for mobile with taller announcement bar */
+        padding-top: 200px; /* Increased padding for mobile with taller announcement bar */
     }
     
     #hero-section.announcement-hidden {
-        padding-top: 80px;
+        padding-top: 100px; /* Increased from 80px for better mobile spacing */
     }
     
     .navbar-container {
