@@ -247,12 +247,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 50);
     });
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    window.addEventListener('scroll', () => {
-        scrollToTopBtn.classList.toggle('visible', window.scrollY > 300);
-    });
-    scrollToTopBtn.addEventListener('click', () => {
+
+    // --- Glossy Scroll-to-Top Button Logic ---
+    const scrollButton = document.getElementById('scrollToTop');
+    function toggleScrollButton() {
+        if (window.scrollY > 500) {
+            scrollButton.classList.add('visible');
+        } else {
+            scrollButton.classList.remove('visible');
+        }
+    }
+    window.addEventListener('scroll', toggleScrollButton);
+    scrollButton.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Click animation
+        scrollButton.style.transform = 'translateY(0) scale(0.95)';
+        setTimeout(() => {
+            scrollButton.style.transform = '';
+        }, 200);
     });
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
