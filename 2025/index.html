@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Moment — 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #070707;
+            --bg-secondary: #0f0f0f;
+            --text-primary: #e8eef6;
+            --text-secondary: #b9f1ff;
+            --accent-primary: #b9f1ff;
+            --accent-secondary: #e8eef6;
+            --glass-bg: rgba(15, 15, 15, 0.7);
+            --glass-border: rgba(184, 241, 255, 0.1);
+            --card-bg: rgba(11, 11, 11, 0.9);
+            --highlight: rgba(184, 241, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 3rem;
+            min-height: 100vh;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(184, 241, 255, 0.1);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(184, 241, 255, 0.7);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .calendar-container {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .calendar-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .calendar-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .calendar-subtitle {
+            color: rgba(184, 241, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .months-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .month-group {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(184, 241, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .month-group:hover {
+            border-color: rgba(184, 241, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .month-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(184, 241, 255, 0.1);
+        }
+
+        .month-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .date-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            background: rgba(15, 15, 15, 0.6);
+            color: rgba(232, 238, 246, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .date-item.highlighted {
+            background: linear-gradient(135deg, rgba(184, 241, 255, 0.15), rgba(184, 241, 255, 0.05));
+            color: var(--text-secondary);
+            box-shadow: 0 0 15px rgba(184, 241, 255, 0.1);
+            border: 1px solid rgba(184, 241, 255, 0.2);
+            font-weight: 600;
+        }
+
+        .date-item.highlighted:hover {
+            background: linear-gradient(135deg, rgba(184, 241, 255, 0.25), rgba(184, 241, 255, 0.1));
+            transform: scale(1.05);
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-header {
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-subtitle {
+            color: rgba(184, 241, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .events-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .event-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 1.8rem;
+            border: 1px solid rgba(184, 241, 255, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            border-color: rgba(184, 241, 255, 0.2);
+            transform: translateX(5px);
+            background: rgba(11, 11, 11, 0.95);
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 2.2rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(184, 241, 255, 0.5);
+        }
+
+        .event-card::after {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 2.2rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        .event-date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-date::before {
+            content: '📅';
+            font-size: 0.8rem;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .event-desc {
+            color: rgba(232, 238, 246, 0.8);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .event-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            background: rgba(184, 241, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(184, 241, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .event-link:hover {
+            background: rgba(184, 241, 255, 0.2);
+            border-color: rgba(184, 241, 255, 0.4);
+            gap: 0.8rem;
+        }
+
+        .event-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .event-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(184, 241, 255, 0.1);
+            color: rgba(184, 241, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .calendar-container {
+                position: static;
+            }
+            
+            .months-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .month-group {
+                flex: 1 1 calc(50% - 1rem);
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .month-group {
+                flex: 1 1 100%;
+            }
+            
+            .event-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .panel {
+                padding: 1.5rem;
+            }
+            
+            .month-dates {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Memory Moment — 2025</h1>
+            <p class="subtitle">A developer's journey through milestones, releases, and achievements</p>
+        </header>
+        
+        <div class="panel calendar-container">
+            <div class="calendar-header">
+                <h2 class="calendar-title">Highlighted Calendar</h2>
+                <p class="calendar-subtitle">Only the dates that matter</p>
+            </div>
+            
+            <div class="months-container" id="monthsContainer">
+                <!-- Calendar months will be generated here -->
+            </div>
+        </div>
+        
+        <div class="panel timeline-container">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Developer Roadmap</h2>
+                <p class="timeline-subtitle">Sorted by recency — from latest to earliest</p>
+            </div>
+            
+            <div class="events-container" id="eventsContainer">
+                <!-- Event cards will be generated here -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>Memory Moment 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data array with all events
+        const DATA = [
+            {
+                date: "2025-03-02",
+                title: "CosmoTalker v1 Released on PyPI",
+                desc: "First official release of CosmoTalker on PyPI — milestone for your open-source journey.",
+                url: null
+            },
+            {
+                date: "2025-03-11",
+                title: "CosmoTalker Milestone Update",
+                desc: "Important follow-up update including fixes and improved feature stability.",
+                url: null
+            },
+            {
+                date: "2025-04-01",
+                title: "NPTEL Certificate (71%)",
+                desc: "Completed NPTEL with 71% score — 15,251 out of ~200,000 applicants passed.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_python-for-data-science-activity-7314999728721555457-Z843"
+            },
+            {
+                date: "2025-05-01",
+                title: "CosmoTalker Featured by @The_Python_Dev",
+                desc: "The official Python Developer X account featured CosmoTalker, giving major visibility.",
+                url: "https://x.com/The_Python_DEV/status/1917930553929613389"
+            },
+            {
+                date: "2025-05-16",
+                title: "ScoutDB Article Shared by Cofounder",
+                desc: "LinkedIn cofounder Christian Arredondo reshared your ScoutDB article — a big recognition.",
+                url: "https://www.linkedin.com/posts/christianarredondo1_query-mongodb-like-a-human-with-scoutdb-activity-7328849361201704960-2juT"
+            },
+            {
+                date: "2025-05-22",
+                title: "Top Android Author (dev.to)",
+                desc: "Awarded Top Android Author badge for your content and contributions on dev.to.",
+                url: "https://x.com/bhuvaneshm06/status/1925536140368781447"
+            },
+            {
+                date: "2025-06-11",
+                title: "Data Science Internship — Unified Mentor",
+                desc: "Received official internship offer for the Data Science role at Unified Mentor.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_internship-certificate-activity-7352664969961779200-q4Nj"
+            },
+            {
+                date: "2025-06-23",
+                title: "Reached 4000+ Followers on dev.to",
+                desc: "Crossed 4,000 tech followers on dev.to — major community growth milestone.",
+                url: "https://x.com/bhuvaneshm06/status/1937149805777850678"
+            },
+            {
+                date: "2025-07-02",
+                title: "Created Setbian",
+                desc: "Released Setbian — Debian-based automation and setup framework.",
+                url: "https://bhuvanesh-m-dev.github.io/setbian"
+            },
+            {
+                date: "2025-07-27",
+                title: "Selected for YASSC25",
+                desc: "You achieved selection for YASSC25. Keep this as a generic selection record (do NOT tag as state-level).",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_yassc2025-cosmotalker-statelevelselection-activity-7355243430949613568-szPD"
+            },
+            {
+                date: "2025-07-29",
+                title: "Created PyLlamaUI",
+                desc: "Launched PyLlamaUI — a UI toolkit for LLM-powered interfaces.",
+                url: "https://bhuvanesh-m-dev.github.io/pyllamaui"
+            },
+            {
+                date: "2025-08-01",
+                title: "ChatGPT → Grok Mode Experiment",
+                desc: "Experimented with ChatGPT to create a Grok-style behavior — fun AI exploration.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_ai-artificialintelligence-chatgpt-activity-7354850506206306304-SlnY"
+            },
+            {
+                date: "2025-08-11",
+                title: "Developer Nightmare — 1st Prize",
+                desc: "Won first place in the Developer Nightmare coding competition.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_kingsengineeringcollege-wonderweb2025-developercompetition-activity-7395086863922774016-2pTI"
+            },
+            {
+                date: "2025-08-12",
+                title: "Innovation Hub — 1st Prize",
+                desc: "Achieved first place in Innovation Hub — recognition for creativity and innovation.",
+                url: null
+            },
+            {
+                date: "2025-08-15",
+                title: "YASSC25 Congress — Day 1",
+                desc: "Participated in first-day YASSC25 state congress events.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_a-quick-glimpse-into-my-journey-at-the-youth-activity-7386385831952793601-rLmZ"
+            },
+            {
+                date: "2025-08-16",
+                title: "YASSC25 Congress — Day 2",
+                desc: "Participated in second-day YASSC25 state congress events.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_a-quick-glimpse-into-my-journey-at-the-youth-activity-7386385831952793601-rLmZ"
+            },
+            {
+                date: "2025-08-17",
+                title: "CosmoTalker — Best Project Award",
+                desc: "At around 3:30 PM, CosmoTalker won Best Project at the YASSC25 Congress.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_a-quick-glimpse-into-my-journey-at-the-youth-activity-7386385831952793601-rLmZ"
+            },
+            {
+                date: "2025-08-25",
+                title: "ZentoraOS Released",
+                desc: "Launched AI-ready Debian-based Linux OS on Linux's 34th birthday.",
+                url: "https://bhuvanesh-m-dev.github.io/zentoraos/"
+            },
+            {
+                date: "2025-08-26",
+                title: "ZentoraOS Reviewed by Q2B Studio",
+                desc: "ZentoraOS received international recognition with a full review from Q2B Studio (Spain).",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_presentando-zentoraos-activity-7384585749230141440-ON32"
+            },
+            {
+                date: "2025-11-04",
+                title: "Cracked LLM Dataset Logic",
+                desc: "Experimented with 10 different LLMs and produced identical outputs — discovering dataset alignment patterns.",
+                url: "https://www.linkedin.com/posts/bhuvaneshm-developer_10-llms-1-prompt-identical-code-activity-7391462996213919744-KAUA"
+            },
+            {
+                date: "2025-11-05",
+                title: "GyaanSetu AI Featured ZentoraOS",
+                desc: "GyaanSetu AI recognized ZentoraOS for global impact — featured on LinkedIn.",
+                url: "https://www.linkedin.com/posts/gyaansetu-ai_zentoraos-receives-global-recognition-from-activity-7391817944730726401-3ilr"
+            }
+        ];
+
+        // Sort events by date (newest to oldest)
+        DATA.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Format date for display
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Get month name from date
+        function getMonthName(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { month: 'long' });
+        }
+
+        // Get month index (0-11) from date
+        function getMonthIndex(dateString) {
+            const date = new Date(dateString);
+            return date.getMonth();
+        }
+
+        // Get day of month from date
+        function getDayOfMonth(dateString) {
+            const date = new Date(dateString);
+            return date.getDate();
+        }
+
+        // Group events by month
+        function groupEventsByMonth() {
+            const months = {};
+            
+            DATA.forEach(event => {
+                const monthName = getMonthName(event.date);
+                const monthIndex = getMonthIndex(event.date);
+                
+                if (!months[monthIndex]) {
+                    months[monthIndex] = {
+                        name: monthName,
+                        dates: []
+                    };
+                }
+                
+                const day = getDayOfMonth(event.date);
+                if (!months[monthIndex].dates.includes(day)) {
+                    months[monthIndex].dates.push(day);
+                }
+            });
+            
+            // Sort months by index (March is 2, November is 10)
+            const sortedMonths = [];
+            for (let i = 0; i < 12; i++) {
+                if (months[i]) {
+                    months[i].dates.sort((a, b) => a - b);
+                    sortedMonths.push({ index: i, ...months[i] });
+                }
+            }
+            
+            return sortedMonths;
+        }
+
+        // Generate calendar HTML
+        function generateCalendar() {
+            const months = groupEventsByMonth();
+            const container = document.getElementById('monthsContainer');
+            
+            months.forEach(month => {
+                const monthElement = document.createElement('div');
+                monthElement.className = 'month-group';
+                
+                let datesHTML = '';
+                for (let day = 1; day <= 31; day++) {
+                    const isHighlighted = month.dates.includes(day);
+                    datesHTML += `<div class="date-item ${isHighlighted ? 'highlighted' : ''}">${day}</div>`;
+                }
+                
+                monthElement.innerHTML = `
+                    <h3 class="month-title">${month.name} 2025</h3>
+                    <div class="month-dates">
+                        ${datesHTML}
+                    </div>
+                `;
+                
+                container.appendChild(monthElement);
+            });
+        }
+
+        // Generate events HTML
+        function generateEvents() {
+            const container = document.getElementById('eventsContainer');
+            
+            DATA.forEach(event => {
+                const eventElement = document.createElement('div');
+                eventElement.className = 'event-card';
+                
+                const linkHTML = event.url 
+                    ? `<a href="${event.url}" target="_blank" rel="noopener noreferrer" class="event-link">Open link →</a>`
+                    : '';
+                
+                eventElement.innerHTML = `
+                    <div class="event-date">${formatDate(event.date)}</div>
+                    <h3 class="event-title">${event.title}</h3>
+                    <p class="event-desc">${event.desc}</p>
+                    ${linkHTML}
+                `;
+                
+                container.appendChild(eventElement);
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCalendar();
+            generateEvents();
+        });
+    </script>
+</body>
+</html>
