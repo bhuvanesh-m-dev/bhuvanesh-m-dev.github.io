@@ -36,11 +36,79 @@
         <section class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">Bhuvanesh M</h1>
-                <p class="hero-subtitle">Computer Science Engineering Student | Software Developer</p>
-                <div class="hero-buttons">
+                <div id="hero-container" style="font-family: 'Exo 2', sans-serif; color:#e0e0e0; padding:20px;">
+
+    <!-- Dynamic typing output -->
+    <div id="typed-lines" style="font-size:clamp(1.2rem,4vw,1.5rem); line-height:1.7;"></div>
+    <br>
+
+     <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="https://github.com/bhuvanesh-m-dev/bhuvanesh-m-dev.github.io/releases/download/resume-2025-oct/BHUVANESH.M.Resume.pdf" class="btn btn-secondary" target="_blank">View Resume</a>
                 </div>
+
+</div>
+
+<script>
+(function() {
+    const lines = [
+        "Computer Science Engineering Student & Open-Source Developer",
+        "Creator of ZentoraOS & CosmoTalker Ecosystem",
+        "Featured in technical articles in India, Spain & Vietnam"
+    ];
+
+    const container = document.getElementById("typed-lines");
+    const btnWork   = document.getElementById("btn-work");
+    const btnResume = document.getElementById("btn-resume");
+    const buttonBox = document.getElementById("hero-buttons");
+
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+        const current = lines[lineIndex];
+        container.innerHTML += current.charAt(charIndex);
+
+        charIndex++;
+
+        if (charIndex < current.length) {
+            setTimeout(typeLine, 40);
+        } else {
+            // Finished typing one full line
+            container.innerHTML += "<br>";
+            charIndex = 0;
+            lineIndex++;
+
+            // Reveal buttons after ALL lines typed
+            if (lineIndex === lines.length) {
+                revealButtons();
+                return;
+            }
+
+            // small delay before typing next line
+            setTimeout(typeLine, 600);
+        }
+    }
+
+    function revealButtons() {
+        buttonBox.style.opacity = 1;
+
+        setTimeout(() => {
+            btnWork.style.opacity = 1;
+            btnWork.style.transform = "translateY(0)";
+        }, 300);
+
+        setTimeout(() => {
+            btnResume.style.opacity = 1;
+            btnResume.style.transform = "translateY(0)";
+        }, 700);
+    }
+
+    // Start typing
+    typeLine();
+})();
+</script>
+
             </div>
         </section>
 
