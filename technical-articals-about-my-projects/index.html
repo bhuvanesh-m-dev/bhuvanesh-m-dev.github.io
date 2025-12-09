@@ -1,1 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Terminal - Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            color: #0af;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Cosmic background with stars */
+        .cosmic-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at bottom, #0a0a2a 0%, #000000 100%);
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        /* CRT monitor effect */
+        .crt-monitor {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #111;
+            border: 20px solid #222;
+            border-radius: 10px;
+            box-shadow: 
+                0 0 80px rgba(0, 150, 255, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        /* CRT screen scanlines effect */
+        .crt-screen {
+            position: relative;
+            padding: 40px;
+            min-height: 500px;
+            background-color: #001122;
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 50, 100, 0.2) 50%, transparent 50%);
+            background-size: 100% 4px;
+            overflow: hidden;
+        }
+        
+        /* Flicker and glow effects */
+        .crt-screen::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .crt-screen::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(0, 100, 255, 0.05) 0%,
+                rgba(0, 100, 255, 0) 70%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* CRT header with brand */
+        .crt-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #0af;
+            position: relative;
+        }
+        
+        .crt-header h1 {
+            font-size: 2.8rem;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        
+        .crt-header p {
+            color: #8af;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        
+        /* Terminal content */
+        .terminal-content {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: rgba(0, 20, 40, 0.5);
+            border-left: 3px solid #0af;
+        }
+        
+        .terminal-line {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .prompt {
+            color: #0f0;
+            margin-right: 10px;
+            font-weight: bold;
+            min-width: 150px;
+        }
+        
+        .command {
+            color: #0af;
+        }
+        
+        .response {
+            color: #fff;
+            margin-left: 10px;
+        }
+        
+        /* Coming soon message */
+        .coming-soon {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            background-color: rgba(0, 40, 80, 0.3);
+            border: 1px solid rgba(0, 150, 255, 0.5);
+            border-radius: 5px;
+        }
+        
+        .coming-soon h2 {
+            font-size: 2.5rem;
+            color: #0ff;
+            text-shadow: 0 0 15px #0ff;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .coming-soon p {
+            font-size: 1.3rem;
+            color: #8af;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        /* Status indicator */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(0, 30, 60, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #0f0;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        /* Countdown timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 20px;
+        }
+        
+        .countdown-item {
+            text-align: center;
+            background-color: rgba(0, 30, 60, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            min-width: 80px;
+        }
+        
+        .countdown-value {
+            font-size: 2rem;
+            color: #0ff;
+            font-weight: bold;
+            text-shadow: 0 0 5px #0ff;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #8af;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #0af;
+            color: #48a;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: #0af;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #0ff;
+            transform: translateY(-3px);
+        }
+        
+        /* CRT bezel */
+        .crt-bezel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background: 
+                radial-gradient(
+                    circle at 20% 50%, 
+                    rgba(0, 50, 100, 0.2) 0%, 
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 80% 50%, 
+                    rgba(0, 50, 100, 0.2) 0%, 
+                    transparent 50%
+                );
+        }
+        
+        /* Blinking cursor */
+        .blinking-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #0ff;
+            margin-left: 5px;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .crt-monitor {
+                margin: 20px;
+                border-width: 10px;
+            }
+            
+            .crt-screen {
+                padding: 20px;
+                min-height: 400px;
+            }
+            
+            .crt-header h1 {
+                font-size: 2rem;
+            }
+            
+            .coming-soon h2 {
+                font-size: 1.8rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-bg"></div>
+    <div class="stars" id="stars"></div>
+    
+    <div class="crt-monitor">
+        <div class="crt-screen">
+            <div class="crt-header">
+                <h1>COSMIC TERMINAL</h1>
+                <p>SYSTEM STATUS: STANDBY</p>
+            </div>
+            
+            <div class="terminal-content">
+                <div class="terminal-line">
+                    <div class="prompt">cosmic-terminal:~$</div>
+                    <div class="command">check_current_project</div>
+                </div>
+                <div class="terminal-line">
+                    <div class="response">>> PROJECT STATUS: UNDER CONSTRUCTION</div>
+                </div>
+                
+                <div class="terminal-line">
+                    <div class="prompt">cosmic-terminal:~$</div>
+                    <div class="command">query_launch_timeline</div>
+                </div>
+                <div class="terminal-line">
+                    <div class="response">>> TIMELINE: IN DEVELOPMENT. ESTIMATED LAUNCH: SOON</div>
+                </div>
+                
+                <div class="terminal-line">
+                    <div class="prompt">cosmic-terminal:~$</div>
+                    <div class="command">display_message<span class="blinking-cursor"></span></div>
+                </div>
+            </div>
+            
+            <div class="coming-soon">
+                <h2>COMING SOON</h2>
+                <p>I'm crafting something extraordinary in the cosmic void.</p>
+                <p>My digital constellation is aligning. Stay tuned for launch!</p>
+                
+                <div class="status">
+                    <div class="status-dot"></div>
+                    <div>SYSTEM ACTIVE - TRANSMISSION IN PROGRESS</div>
+                </div>
+            </div>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Cosmic Terminal v1.0 | Transmission Frequency: 7.83 Hz (Earth Resonance)</p>
+                <div class="social-links">
+                    <a href="https://github.com/bhuvanesh-m-dev"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/bhuvaneshm06"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="crt-bezel"></div>
+    </div>
+    
+    <script>
+        // Create twinkling stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starsCount = 200;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 3;
+                
+                // Random twinkle delay
+                const delay = Math.random() * 5;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Countdown timer
+        function updateCountdown() {
+            // Set launch date to 30 days from now
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30);
+            launchDate.setHours(12, 0, 0, 0);
+            
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+            
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector('.countdown').innerHTML = "<div class='coming-soon'><h2>LAUNCH IMMINENT!</h2></div>";
+            }
+        }
+        
+        // CRT flicker effect
+        function crtFlicker() {
+            const screen = document.querySelector('.crt-screen');
+            const flickerAmount = Math.random() * 0.05 + 0.95; // Between 0.95 and 1.0
+            
+            screen.style.opacity = flickerAmount;
+            
+            // Randomly add a scanline effect
+            if (Math.random() > 0.7) {
+                screen.style.backgroundImage = 
+                    `linear-gradient(to bottom, rgba(0, 50, 100, 0.4) 50%, transparent 50%), 
+                     linear-gradient(to bottom, rgba(0, 100, 255, 0.1) 1px, transparent 1px)`;
+                screen.style.backgroundSize = '100% 4px, 100% 3px';
+                
+                // Reset after a short time
+                setTimeout(() => {
+                    screen.style.backgroundImage = 
+                        'linear-gradient(to bottom, rgba(0, 50, 100, 0.2) 50%, transparent 50%)';
+                    screen.style.backgroundSize = '100% 4px';
+                }, 100);
+            }
+        }
+        
+        // Initialize everything when page loads
+        window.addEventListener('DOMContentLoaded', (event) => {
+            createStars();
+            updateCountdown();
+            
+            // Update countdown every second
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            
+            // Add CRT flicker effect randomly
+            setInterval(crtFlicker, 300);
+            
+            // Add typing effect to the command line
+            const cursor = document.querySelector('.blinking-cursor');
+            const commandText = "display_message";
+            let charIndex = 0;
+            
+            function typeCommand() {
+                if (charIndex < commandText.length) {
+                    cursor.insertAdjacentHTML('beforebegin', commandText.charAt(charIndex));
+                    charIndex++;
+                    setTimeout(typeCommand, 100);
+                }
+            }
+            
+            // Start typing after a delay
+            setTimeout(typeCommand, 1000);
+        });
+    </script>
+</body>
+</html>
 
