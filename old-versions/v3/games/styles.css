@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', monospace;
+  background: radial-gradient(ellipse at 60% 40%, #2e0854 0%, #0d0221 70%, #000 100%);
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: block;
+  pointer-events: none;
+  background: transparent;
+}
+
+.portal-header {
+  text-align: center;
+  padding: 2rem 1rem 1rem 1rem;
+  text-shadow: 0 0 8px #00ffe7, 0 0 16px #ff00cc;
+}
+
+.portal-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+  color: #00ffe7;
+  text-shadow: 0 0 6px #00ffe7;
+}
+
+.games-grid {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .games-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 900px) {
+  .games-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1200px) {
+  .games-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(20, 10, 40, 0.85);
+  border: 3px solid #00ffe7;
+  border-radius: 18px;
+  box-shadow: 0 0 24px 6px #ff00cc, 0 0 8px 2px #00ffe7;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.18s cubic-bezier(.5,1.5,.5,1), box-shadow 0.18s, border-color 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card:hover, .game-card:focus, .game-card:active {
+  transform: scale(1.06);
+  box-shadow: 0 0 40px 12px #00ffe7, 0 0 24px 8px #ff00cc;
+  border-color: #ff00cc;
+  outline: none;
+}
+
+.game-img {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1.2/1;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 1.2rem;
+  box-shadow: 0 0 12px 2px #00ffe7;
+}
+
+.game-info {
+  padding: 1.2rem 1rem 1.5rem 1rem;
+  text-align: center;
+}
+
+.game-info h2 {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  margin: 0 0 0.5rem 0;
+  color: #ff00cc;
+  text-shadow: 0 0 6px #ff00cc;
+}
+
+.game-info p {
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  color: #00ffe7;
+  text-shadow: 0 0 4px #00ffe7;
+  margin: 0;
+}
+
+.portal-footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem 1rem;
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  color: #fff;
+  text-shadow: 0 0 6px #00ffe7;
+  background: transparent;
+}
+
+@media (hover: none) {
+  .game-card:active {
+    transform: scale(1.06);
+    box-shadow: 0 0 40px 12px #00ffe7, 0 0 24px 8px #ff00cc;
+    border-color: #ff00cc;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #0d0221;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ffe7;
+  border-radius: 8px;
+}
