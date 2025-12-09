@@ -1,0 +1,85 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* Allows flex layout for children */
+    min-height: 100vh; /* Ensures body fills the entire viewport */
+}
+
+/* Main Content Styling */
+.container {
+    text-align: center;
+    padding: 20px;
+    flex: 1; /* Pushes the footer down if content is short */
+}
+
+/* Header Buttons in Top-Right Corner */
+.header {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #fff;
+    color: #4e54c8;
+    border-color: #fff;
+}
+
+/* Time Display */
+.time-display {
+    margin: 20px 0;
+}
+
+#time {
+    font-size: 9rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#date, #countdown {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Footer Styling */
+footer {
+    background: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    position: relative; /* Default for short content */
+    bottom: 0;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+

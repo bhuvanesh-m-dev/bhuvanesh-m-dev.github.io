@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="buttons">
+                <a href="https://bhuvaneshm.in" class="btn">Home</a>
+                <a href="https://linkedin.com/in/bhuvaneshm-developer" class="btn" target="_blank">LinkedIn</a>
+                <a href="https://youtube.com/@bhuvaneshm_dev" class="btn" target="_blank">YouTube</a>
+            </div>
+        </div>
+        <h1>World Clock Library</h1>
+        <div class="time-display">
+            <p id="default-time"></p>
+            <p id="default-day-date"></p>
+        </div>
+        <div class="search">
+            <label for="timezone-select">Select Time Zone:</label>
+            <select id="timezone-select">
+                <option value="Asia/Kolkata" selected>India Standard Time (IST)</option>
+                <option value="UTC">Coordinated Universal Time (UTC)</option>
+                <option value="America/New_York">Eastern Time (ET)</option>
+                <option value="America/Chicago">Central Time (CT)</option>
+                <option value="America/Denver">Mountain Time (MT)</option>
+                <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                <option value="Europe/London">Greenwich Mean Time (GMT)</option>
+                <option value="Europe/Berlin">Central European Time (CET)</option>
+                <option value="Asia/Tokyo">Japan Standard Time (JST)</option>
+                <option value="Australia/Sydney">Australia Eastern Time (AET)</option>
+                <option value="Asia/Shanghai">China Standard Time (CST)</option>
+                <option value="Asia/Dubai">Gulf Standard Time (GST)</option>
+                <option value="America/Sao_Paulo">Brasília Time (BRT)</option>
+                <option value="Africa/Johannesburg">South Africa Standard Time (SAST)</option>
+                <option value="Asia/Seoul">Korea Standard Time (KST)</option>
+                <option value="Asia/Bangkok">Indochina Time (ICT)</option>
+                <option value="Pacific/Auckland">New Zealand Time (NZT)</option>
+                <option value="Pacific/Honolulu">Hawaii-Aleutian Time (HAT)</option>
+                <option value="America/Anchorage">Alaska Time (AKT)</option>
+                <option value="Europe/Moscow">Moscow Standard Time (MSK)</option>
+                <option value="Asia/Hong_Kong">Hong Kong Time (HKT)</option>
+                <option value="Asia/Singapore">Singapore Time (SGT)</option>
+                <option value="America/Mexico_City">Mexico City Time (MCT)</option>
+            </select>
+            <br><br>
+            <button id="search-btn">Show Time</button>
+        </div>
+        <div class="result">
+            <h2 id="location"></h2>
+            <p id="result-time"></p>
+            <p id="result-day-date"></p>
+        </div>
+    </div>
+    <footer>
+        <a href="copyright/index.html" target="_blank"><p>&copy; 2025 Bhuvanesh M . All Rights Reserved.</p></a>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
