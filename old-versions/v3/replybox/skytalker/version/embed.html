@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyTalker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #45a049;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .iframe-container {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        iframe {
+            width: 75%;
+            height: 800px;
+            border: none;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn" id="toggleButton">Try SkyTalker</button>
+
+    <div class="iframe-container" id="iframeContainer">
+        <iframe 
+            src="https://bhuvaneshm.in/skytalker"
+            width="75%" 
+    height="800" 
+    style="border: none; border-radius: 25px; overflow: hidden;">
+        </iframe>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const iframeContainer = document.getElementById('iframeContainer');
+
+        toggleButton.addEventListener('click', () => {
+            if (iframeContainer.style.display === 'none' || iframeContainer.style.display === '') {
+                iframeContainer.style.display = 'block';
+                toggleButton.textContent = 'Close SkyTalker';
+            } else {
+                iframeContainer.style.display = 'none';
+                toggleButton.textContent = 'Try SkyTalker';
+            }
+        });
+    </script>
+</body>
+</html>
+
