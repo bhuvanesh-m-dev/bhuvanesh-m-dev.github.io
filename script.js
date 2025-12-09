@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Starfield (with void around black hole) ---
     // Create a circular texture for round stars
     const starTexture = new THREE.TextureLoader().load('https://placehold.co/32x32/FFFFFF/FFFFFF.png');
-    
+
     const starVertices = [];
     const numStars = 20000;
     for (let i = 0; i < numStars; i++) {
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             randomY,
             Math.sin(angle + spin) * radius + randomZ
         );
-    
+
 
         // Color interpolation
         const mixedColor = colorInside.clone();
@@ -272,5 +272,44 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Message sent! Thank you for reaching out.');
         contactForm.reset();
     });
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    /* Footer-only popout toggle: isolated, no global side-effects */
+    (function(){
+      // find elements
+      const moreBtn = document.querySelector('.footer-more-trigger');
+      const pop = document.getElementById('more-links-popout');
+
+      // set year
+      const yEl = document.getElementById('currentYear');
+      if(yEl) yEl.textContent = new Date().getFullYear();
+
+      if(!moreBtn || !pop) return;
+
+      function closePop(){
+        pop.setAttribute('aria-hidden', 'true');
+        pop.hidden = true;
+        moreBtn.setAttribute('aria-expanded', 'false');
+      }
+      function openPop(){
+        pop.setAttribute('aria-hidden', 'false');
+        pop.hidden = false;
+        moreBtn.setAttribute('aria-expanded', 'true');
+      }
+      function togglePop(e){
+        e.stopPropagation();
+        if(moreBtn.getAttribute('aria-expanded') === 'true') closePop();
+        else openPop();
+      }
+
+      moreBtn.addEventListener('click', togglePop);
+
+      // close on outside click
+      document.addEventListener('click', function(e){
+        if(!e.target.closest('.footer-more-container')) closePop();
+      });
+
+      // keyboard: Escape closes
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') closePop();
+      });
+    })();
 });
