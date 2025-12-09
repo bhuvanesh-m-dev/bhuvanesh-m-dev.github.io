@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Right Corner Buttons -->
+    <div class="top-buttons">
+        <a href="https://bhuvaneshm.in" class="top-btn">Home</a>
+        <a href="https://www.linkedin.com/in/bhuvaneshm-developer" target="_blank" class="top-btn">LinkedIn</a>
+        <a href="https://www.youtube.com/@bhuvaneshm_dev" target="_blank" class="top-btn">YouTube</a>
+        <a href="https://instagram.com/bhuvaneshm.developer" target="_blank" class="top-btn">Instagram</a>
+    </div>
+
+    <div class="container">
+        <h1>Translate to Different Languages</h1>
+        <p>Enter a word or sentence below:</p>
+
+        <!-- Input box -->
+        <input type="text" id="userInput" class="input-box" placeholder="Type here..." />
+        
+        <!-- Translate button -->
+        <button onclick="openTranslation()" class="btn translate-btn">Translate</button>
+        
+        <!-- Dropdown for selecting language -->
+        <div class="dropdown">
+            <button class="dropbtn">Select Language</button>
+            <div class="dropdown-content">
+                <a href="javascript:void(0);" onclick="setLanguage('te')">Telugu</a>
+                <a href="javascript:void(0);" onclick="setLanguage('kn')">Kannada</a>
+                <a href="javascript:void(0);" onclick="setLanguage('ml')">Malayalam</a>
+                <a href="javascript:void(0);" onclick="setLanguage('hi')">Hindi</a>
+                <a href="javascript:void(0);" onclick="setLanguage('en')">English</a>
+                <a href="javascript:void(0);" onclick="setLanguage('ta')">Tamil(Default)</a>
+            </div>
+        </div>
+        <button onclick="window.location.href='website/index.html';" class="btn translate-btn">Website-Translate</button>
+        <h3><a href="copyright-translator.html" target="_blank" style="color: black;">© 2025 Bhuvanesh M. All rights reserved.</a></h3>
+
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
