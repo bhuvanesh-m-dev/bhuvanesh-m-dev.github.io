@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bhuvanesh M - Computer Science Engineering Student and Developer Portfolio with a space theme.">
+    <meta name="description"
+        content="Bhuvanesh M - Computer Science Engineering Student and Developer Portfolio with a space theme.">
     <meta name="keywords" content="Bhuvanesh M, portfolio, developer, engineering, computer science, space, cosmos">
     <title>Bhuvanesh M - A Cosmic Portfolio</title>
     <link rel="stylesheet" href="styles.css">
@@ -12,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://bhuvaneshm.in/logo.gif" type="image/gif">
 </head>
+
 <body>
     <!-- Canvas for the 3D starfield background -->
     <canvas id="starfield"></canvas>
@@ -38,76 +41,77 @@
                 <h1 class="hero-title">Bhuvanesh M</h1>
                 <div id="hero-container" style="font-family: 'Exo 2', sans-serif; color:#e0e0e0; padding:20px;">
 
-    <!-- Dynamic typing output -->
-    <div id="typed-lines" style="font-size:clamp(1.2rem,4vw,1.5rem); line-height:1.7;"></div>
-    <br>
+                    <!-- Dynamic typing output -->
+                    <div id="typed-lines" style="font-size:clamp(1.2rem,4vw,1.5rem); line-height:1.7;"></div>
+                    <br>
 
-     <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="https://github.com/bhuvanesh-m-dev/bhuvanesh-m-dev.github.io/releases/download/resume-2025-oct/BHUVANESH.M.Resume.pdf" class="btn btn-secondary" target="_blank">View Resume</a>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="https://github.com/bhuvanesh-m-dev/bhuvanesh-m-dev.github.io/releases/download/resume-2025-oct/BHUVANESH.M.Resume.pdf"
+                            class="btn btn-secondary" target="_blank">View Resume</a>
+                    </div>
+
                 </div>
 
-</div>
+                <script>
+                    (function () {
+                        const lines = [
+                            "Computer Science Engineering Student & Open-Source Developer",
+                            "Creator of ZentoraOS & CosmoTalker Ecosystem",
+                            "Featured in technical articles in India, Spain & Vietnam"
+                        ];
 
-<script>
-(function() {
-    const lines = [
-        "Computer Science Engineering Student & Open-Source Developer",
-        "Creator of ZentoraOS & CosmoTalker Ecosystem",
-        "Featured in technical articles in India, Spain & Vietnam"
-    ];
+                        const container = document.getElementById("typed-lines");
+                        const btnWork = document.getElementById("btn-work");
+                        const btnResume = document.getElementById("btn-resume");
+                        const buttonBox = document.getElementById("hero-buttons");
 
-    const container = document.getElementById("typed-lines");
-    const btnWork   = document.getElementById("btn-work");
-    const btnResume = document.getElementById("btn-resume");
-    const buttonBox = document.getElementById("hero-buttons");
+                        let lineIndex = 0;
+                        let charIndex = 0;
 
-    let lineIndex = 0;
-    let charIndex = 0;
+                        function typeLine() {
+                            const current = lines[lineIndex];
+                            container.innerHTML += current.charAt(charIndex);
 
-    function typeLine() {
-        const current = lines[lineIndex];
-        container.innerHTML += current.charAt(charIndex);
+                            charIndex++;
 
-        charIndex++;
+                            if (charIndex < current.length) {
+                                setTimeout(typeLine, 40);
+                            } else {
+                                // Finished typing one full line
+                                container.innerHTML += "<br>";
+                                charIndex = 0;
+                                lineIndex++;
 
-        if (charIndex < current.length) {
-            setTimeout(typeLine, 40);
-        } else {
-            // Finished typing one full line
-            container.innerHTML += "<br>";
-            charIndex = 0;
-            lineIndex++;
+                                // Reveal buttons after ALL lines typed
+                                if (lineIndex === lines.length) {
+                                    revealButtons();
+                                    return;
+                                }
 
-            // Reveal buttons after ALL lines typed
-            if (lineIndex === lines.length) {
-                revealButtons();
-                return;
-            }
+                                // small delay before typing next line
+                                setTimeout(typeLine, 600);
+                            }
+                        }
 
-            // small delay before typing next line
-            setTimeout(typeLine, 600);
-        }
-    }
+                        function revealButtons() {
+                            buttonBox.style.opacity = 1;
 
-    function revealButtons() {
-        buttonBox.style.opacity = 1;
+                            setTimeout(() => {
+                                btnWork.style.opacity = 1;
+                                btnWork.style.transform = "translateY(0)";
+                            }, 300);
 
-        setTimeout(() => {
-            btnWork.style.opacity = 1;
-            btnWork.style.transform = "translateY(0)";
-        }, 300);
+                            setTimeout(() => {
+                                btnResume.style.opacity = 1;
+                                btnResume.style.transform = "translateY(0)";
+                            }, 700);
+                        }
 
-        setTimeout(() => {
-            btnResume.style.opacity = 1;
-            btnResume.style.transform = "translateY(0)";
-        }, 700);
-    }
-
-    // Start typing
-    typeLine();
-})();
-</script>
+                        // Start typing
+                        typeLine();
+                    })();
+                </script>
 
             </div>
         </section>
@@ -116,7 +120,10 @@
             <div class="container">
                 <h2 class="section-title">About Me</h2>
                 <div class="card">
-                    <p>Passionate and results-oriented open-source developer specializing in AI, system architecture, and space technology. Creator of the award-winning CosmoTalker library (50k+ downloads) and ZentoraOS, an offline Linux OS that streamlines interaction with local AI models. Proven ability to manage the full development lifecycle, from system design to final ISO image deployment.</p>
+                    <p>Passionate and results-oriented open-source developer specializing in AI, system architecture,
+                        and space technology. Creator of the award-winning CosmoTalker library (50k+ downloads) and
+                        ZentoraOS, an offline Linux OS that streamlines interaction with local AI models. Proven ability
+                        to manage the full development lifecycle, from system design to final ISO image deployment.</p>
                 </div>
             </div>
         </section>
@@ -144,7 +151,8 @@
                         </div>
                         <div class="skill">
                             <h3>Tools & Platforms</h3>
-                            <p>Git, Docker, PyPI, PyCharm, VSCode, Command Line Interface (CLI), Jupiter notebook, Linux</p>
+                            <p>Git, Docker, PyPI, PyCharm, VSCode, Command Line Interface (CLI), Jupiter notebook, Linux
+                            </p>
                         </div>
                         <div class="skill">
                             <h3>Machine Learning</h3>
@@ -163,7 +171,8 @@
                         <img src="img/cosmotalker.png" alt="Project One">
                         <div class="project-content">
                             <h3>CosmoTalker</h3>
-                            <p>Developed a Python library offering astronomical data and interactive space exploration tools, used by a global community of developers and researchers.</p>
+                            <p>Developed a Python library offering astronomical data and interactive space exploration
+                                tools, used by a global community of developers and researchers.</p>
                             <a href="https:bhuvaneshm.in/cosmotalker" class="btn-link">View Project</a>
                         </div>
                     </div>
@@ -171,7 +180,8 @@
                         <img src="img/cosmo4u.png" alt="Project Two">
                         <div class="project-content">
                             <h3>Cosmo4U by CosmoTalker</h3>
-                            <p>Engineered Cosmo4U, a system-level application for Debian Linux that enables full-system integration of CosmoTalker’s offline and real-time space exploration tools.</p>
+                            <p>Engineered Cosmo4U, a system-level application for Debian Linux that enables full-system
+                                integration of CosmoTalker’s offline and real-time space exploration tools.</p>
                             <a href="https://bhuvaneshm.in/cosmo4u" class="btn-link">View Project</a>
                         </div>
                     </div>
@@ -179,7 +189,8 @@
                         <img src="img/setbian.png" alt="Project Three">
                         <div class="project-content">
                             <h3>Setbian for Debian</h3>
-                            <p>Built Setbian, a post-install assistant for Debian-based systems that offers system-level configuration via an interactive interface, reducing manual setup effort.</p>
+                            <p>Built Setbian, a post-install assistant for Debian-based systems that offers system-level
+                                configuration via an interactive interface, reducing manual setup effort.</p>
                             <a href="https://bhuvaneshm.in/setbian" class="btn-link">View Project</a>
                         </div>
                     </div>
@@ -187,7 +198,9 @@
                         <img src="img/pyllamaui.png" alt="Project Four">
                         <div class="project-content">
                             <h3>PyllamaUI</h3>
-                            <p>Built PyllamaUI, a cross-platform Python-based GUI for local LLMs via Ollama, distributed as a VS Code extension, .deb package, .exe installer, and raw source — enabling fully offline AI chat interaction for developers.</p>
+                            <p>Built PyllamaUI, a cross-platform Python-based GUI for local LLMs via Ollama, distributed
+                                as a VS Code extension, .deb package, .exe installer, and raw source — enabling fully
+                                offline AI chat interaction for developers.</p>
                             <a href="https://bhuvaneshm.in/pyllamaui" class="btn-link">View Project</a>
                         </div>
                     </div>
@@ -195,7 +208,9 @@
                         <img src="img/sheetsmart.png" alt="Project Five">
                         <div class="project-content">
                             <h3>SheetSmart</h3>
-                            <p>Developed SheetSmart, a lightweight, Python-based student record management system using CSV for persistent storage — enabling users to add, edit, view, and manage academic data easily without a database.</p>
+                            <p>Developed SheetSmart, a lightweight, Python-based student record management system using
+                                CSV for persistent storage — enabling users to add, edit, view, and manage academic data
+                                easily without a database.</p>
                             <a href="https://pypi.org/project/sheetsmart" class="btn-link">View Project</a>
                         </div>
                     </div>
@@ -203,115 +218,145 @@
                         <img src="img/zentoraos.png" alt="Project Six">
                         <div class="project-content">
                             <h3>ZentoraOS</h3>
-                            <p>Engineered a privacy-centric Linux OS that makes the switch from Windows easy and intuitive. ZentoraOS combines a familiar Windows-like user experience with a powerful, pre-configured on-device AI core using Ollama, allowing users to leverage Large Language Models offline, securely, and with zero data collection.</p>
+                            <p>Engineered a privacy-centric Linux OS that makes the switch from Windows easy and
+                                intuitive. ZentoraOS combines a familiar Windows-like user experience with a powerful,
+                                pre-configured on-device AI core using Ollama, allowing users to leverage Large Language
+                                Models offline, securely, and with zero data collection.</p>
                             <a href="https://bhuvaneshm.in/zentoraos" class="btn-link">View Project</a>
                         </div>
+                    </div>
                 </div>
-            </div>
         </section>
 
         <section id="achievements" class="content-section">
             <div class="container">
                 <h2 class="section-title">Achievements</h2>
-                <div class="achievements-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <div class="achievements-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
                     <!-- CosmoTalker Card (smaller) -->
-                    <article class="card" aria-label="Achievement – CosmoTalker" style="max-width: 400px; margin: 0 auto;">
-  <div class="top" style="gap: 10px;">
-    <div class="titles">
-      <div class="title" style="font-size: 1.1rem;">
-        🏆 Best Project Submission – TASS <br>
-        <div style="text-align: center;">YASSC 2025</div>
-        <br>
-      </div>
-      <p>Honored with a medal by <strong>Dr. Mylswamy Annadurai</strong> (Moon Man of India) — Project Director of <strong>Chandrayaan‑1 & 2</strong> and <strong>Mangalyaan</strong>, Former Director at ISRO.</p>
-      <br>
-      <li style="margin-bottom: 12px;">
-        CosmoTalker hit 50K+ downloads on PyPI within just 5 months of launch — a major milestone for this lightweight Python library!
-      </li><br>
-      <ul class="list">
-        <li><strong>CosmoTalker</strong> deployed: <em>2 Mar 2025</em></li>
-        <li><strong>Best Submission</strong> recognition: <em>17 Aug 2025</em> (168 days later)</li>
-        <li>Category: <em>Paper Presentation</em></li>
-      </ul>
-      <div class="actions" style="gap: 6px; margin-top: 10px;">
-        <a class="btn" href="https://lnkd.in/dnwmfdg4" target="_blank" rel="noopener" style="font-size: 0.9rem;">🎖️ Moment</a>
-        <a class="btn" href="https://www.linkedin.com/posts/bhuvaneshm-developer_yassc2025-tass-cosmotalker-activity-7363122858304192513-hbSG" target="_blank" rel="noopener" style="font-size: 0.9rem;">📸 Photos</a>
-      </div>
-      <br>
-      <div class="video-container">
-                <video 
-                    src="assets/The developer of CosmoTalker Python library was honored with a medal by Dr. Mylswamy Annadurai, the ‘Moon Man of India’ and Padma Shri awardee.mp4" 
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                </video>
-      </div>
+                    <article class="card" aria-label="Achievement – CosmoTalker"
+                        style="max-width: 400px; margin: 0 auto;">
+                        <div class="top" style="gap: 10px;">
+                            <div class="titles">
+                                <div class="title" style="font-size: 1.1rem;">
+                                    🏆 Best Project Submission – TASS <br>
+                                    <div style="text-align: center;">YASSC 2025</div>
+                                    <br>
+                                </div>
+                                <p>Honored with a medal by <strong>Dr. Mylswamy Annadurai</strong> (Moon Man of India) —
+                                    Project Director of <strong>Chandrayaan‑1 & 2</strong> and
+                                    <strong>Mangalyaan</strong>, Former Director at ISRO.</p>
+                                <br>
+                                <li style="margin-bottom: 12px;">
+                                    CosmoTalker hit 50K+ downloads on PyPI within just 5 months of launch — a major
+                                    milestone for this lightweight Python library!
+                                </li><br>
+                                <ul class="list">
+                                    <li><strong>CosmoTalker</strong> deployed: <em>2 Mar 2025</em></li>
+                                    <li><strong>Best Submission</strong> recognition: <em>17 Aug 2025</em> (168 days
+                                        later)</li>
+                                    <li>Category: <em>Paper Presentation</em></li>
+                                </ul>
+                                <div class="actions" style="gap: 6px; margin-top: 10px;">
+                                    <a class="btn" href="https://lnkd.in/dnwmfdg4" target="_blank" rel="noopener"
+                                        style="font-size: 0.9rem;">🎖️ Moment</a>
+                                    <a class="btn"
+                                        href="https://www.linkedin.com/posts/bhuvaneshm-developer_yassc2025-tass-cosmotalker-activity-7363122858304192513-hbSG"
+                                        target="_blank" rel="noopener" style="font-size: 0.9rem;">📸 Photos</a>
+                                </div>
+                                <br>
+                                <div class="video-container">
+                                    <video
+                                        src="assets/The developer of CosmoTalker Python library was honored with a medal by Dr. Mylswamy Annadurai, the ‘Moon Man of India’ and Padma Shri awardee.mp4"
+                                        autoplay muted loop playsinline
+                                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                    </video>
+                                </div>
 
-      <style>
-        .video-container {
-          position: relative;
-          width: 100%;
-          max-width: 360px; /* Adjust as needed */
-          aspect-ratio: 9 / 16; /* Ensures 9:16 ratio */
-          overflow: hidden;
-          border-radius: 12px; /* Optional: Rounded corners */
-          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2); /* Optional: Shadow effect */
-        }
+                                <style>
+                                    .video-container {
+                                        position: relative;
+                                        width: 100%;
+                                        max-width: 360px;
+                                        /* Adjust as needed */
+                                        aspect-ratio: 9 / 16;
+                                        /* Ensures 9:16 ratio */
+                                        overflow: hidden;
+                                        border-radius: 12px;
+                                        /* Optional: Rounded corners */
+                                        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+                                        /* Optional: Shadow effect */
+                                    }
 
-        .video-container iframe {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover; /* Ensures the video fills the container */
-        }
-      </style>
-    </div>
-  </div>
-</article>
+                                    .video-container iframe {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                        /* Ensures the video fills the container */
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </article>
                     <!-- Achievements List Card -->
                     <article class="card" style="max-width: 400px; margin: 0 auto;">
-                        <h3 style="font-size: 1.1rem; margin: 0 0 10px 0; color: var(--primary-accent);">Other Achievements</h3>
+                        <h3 style="font-size: 1.1rem; margin: 0 0 10px 0; color: var(--primary-accent);">Other
+                            Achievements</h3>
                         <ul style="font-size: 0.97rem; list-style: none; padding: 0; margin: 0;">
                             <li style="margin-bottom: 12px;">
-                                My Linux distribution project, ZentoraOS, was analyzed and featured by the international software firm Q2B Studio. Their technical article validates the project's architecture and its approach to offline AI. <a href="https://www.q2bstudio.com/nuestro-blog/16620/presentando-zentoraos" 
-                                    target="_blank" rel="noopener noreferrer" style="color: var(--primary-accent); text-decoration: none;"> Read More</a>
+                                My Linux distribution project, ZentoraOS, was analyzed and featured by the international
+                                software firm Q2B Studio. Their technical article validates the project's architecture
+                                and its approach to offline AI. <a
+                                    href="https://www.q2bstudio.com/nuestro-blog/16620/presentando-zentoraos"
+                                    target="_blank" rel="noopener noreferrer"
+                                    style="color: var(--primary-accent); text-decoration: none;"> Read More</a>
                             </li></br>
                             <li style="margin-bottom: 12px;">
-                                Developed Oolit, a system-level application integrating CosmoTalker into the OS for seamless space exploration. 
-                                Featured by TechViet, a leading Vietnam-based tech company. 
-                                <a href="https://kitemetric.com/blogs/introducing-oolit-your-offline-ai-chatbot-for-cosmotalker" 
-                                    target="_blank" rel="noopener noreferrer" style="color: var(--primary-accent); text-decoration: none;">Read More</a>
-                                </li><br>
-                            <li style="margin-bottom: 12px;">
-                                Featured by GyaanSetu AI (India) for student-led innovation in AI and open-source systems. They highlighted ZentoraOS as a promising project bridging Linux with offline AI for accessible, privacy-first computing.
-                                <a href="https://www.linkedin.com/posts/gyaansetu-ai_zentoraos-receives-global-recognition-from-activity-7391817944730726401-3ilr" 
-                                    target="_blank" rel="noopener noreferrer" style="color: var(--primary-accent); text-decoration: none;">Read More</a>
+                                Developed Oolit, a system-level application integrating CosmoTalker into the OS for
+                                seamless space exploration.
+                                Featured by TechViet, a leading Vietnam-based tech company.
+                                <a href="https://kitemetric.com/blogs/introducing-oolit-your-offline-ai-chatbot-for-cosmotalker"
+                                    target="_blank" rel="noopener noreferrer"
+                                    style="color: var(--primary-accent); text-decoration: none;">Read More</a>
                             </li><br>
                             <li style="margin-bottom: 12px;">
-                                Invited by the Google Developer Team to Google I/O 2025 — shared my experience on Dev.to. 
-                                Earned the Android badge within 1 month of joining the platform! 
-                                <a href="https://dev.to/bhuvaneshm_dev/my-google-io-experience-2025-by-invitation-from-google-developer-team-im4" 
-                                    target="_blank" rel="noopener noreferrer" style="color: var(--primary-accent); text-decoration: none;">Read More</a>
+                                Featured by GyaanSetu AI (India) for student-led innovation in AI and open-source
+                                systems. They highlighted ZentoraOS as a promising project bridging Linux with offline
+                                AI for accessible, privacy-first computing.
+                                <a href="https://www.linkedin.com/posts/gyaansetu-ai_zentoraos-receives-global-recognition-from-activity-7391817944730726401-3ilr"
+                                    target="_blank" rel="noopener noreferrer"
+                                    style="color: var(--primary-accent); text-decoration: none;">Read More</a>
+                            </li><br>
+                            <li style="margin-bottom: 12px;">
+                                Invited by the Google Developer Team to Google I/O 2025 — shared my experience on
+                                Dev.to.
+                                Earned the Android badge within 1 month of joining the platform!
+                                <a href="https://dev.to/bhuvaneshm_dev/my-google-io-experience-2025-by-invitation-from-google-developer-team-im4"
+                                    target="_blank" rel="noopener noreferrer"
+                                    style="color: var(--primary-accent); text-decoration: none;">Read More</a>
                             </li><br>
                             <li style="margin-bottom: 0;">
-                                Selected to represent at the State-Level Space Congress Meet after qualifying from the Regional Space Congress — 
+                                Selected to represent at the State-Level Space Congress Meet after qualifying from the
+                                Regional Space Congress —
                                 a proud achievement in the space and science community.
                             </li><br>
                             <li style="margin-bottom: 0;">
-                                With a <b>Socket score of 99%,</b> CosmoTalker stands out for its strong security posture.
+                                With a <b>Socket score of 99%,</b> CosmoTalker stands out for its strong security
+                                posture.
                                 It’s designed to give developers a safe, reliable, and dependable experience.
                             </li><br>
                             <li style="margin-bottom: 0;">
-                                <p>Verified with <b>SafetyCLI,</b> CosmoTalker passed with a clean bill of health.  
-                                <b>No vulnerabilities detected in its dependencies.</b></p>
+                                <p>Verified with <b>SafetyCLI,</b> CosmoTalker passed with a clean bill of health.
+                                    <b>No vulnerabilities detected in its dependencies.</b>
+                                </p>
                             </li><br>
                             <li style="margin-bottom: 0;">
-                                <p><b>The official @The_Python_DEV account tweeted:</b> "Turned my wonder at the night sky into code."  
-                                They tagged the <b>CosmoTalker Python library</b> in their post.</p>
+                                <p><b>The official @The_Python_DEV account tweeted:</b> "Turned my wonder at the night
+                                    sky into code."
+                                    They tagged the <b>CosmoTalker Python library</b> in their post.</p>
                             </li><br>
                             <li style="margin-bottom: 0;">
                                 <p>✨ The next big chapter in <b>My</b> journey is loading… stay tuned!</p>
@@ -325,17 +370,21 @@
         <section id="contact" class="content-section">
             <div class="container">
                 <h2 class="section-title" style="color: #fff;">Launch a Message</h2>
-                <div class="card" style="background: rgba(255,255,255,0.08); box-shadow: 0 4px 24px rgba(255,255,255,0.08); border-radius: 16px; text-align: center; border: 1px solid rgba(255,255,255,0.2);">
+                <div class="card"
+                    style="background: rgba(255,255,255,0.08); box-shadow: 0 4px 24px rgba(255,255,255,0.08); border-radius: 16px; text-align: center; border: 1px solid rgba(255,255,255,0.2);">
                     <p style="font-size: 18px; color: #fff; margin-bottom: 18px;">
-                        Whether you're interested in collaborating on innovative projects, discussing tech, or just saying hi — I'm always happy to connect!
+                        Whether you're interested in collaborating on innovative projects, discussing tech, or just
+                        saying hi — I'm always happy to connect!
                     </p>
                     <p style="font-size: 20px; font-weight: bold; color: #fff; margin-bottom: 28px;">
                         Let’s build something great together. 😊
                     </p>
-                    <a href="mailto:bhuvaneshm.developer@gmail.com" style="font-size: 18px; color: #fff; margin-bottom: 18px; display: block;">
+                    <a href="mailto:bhuvaneshm.developer@gmail.com"
+                        style="font-size: 18px; color: #fff; margin-bottom: 18px; display: block;">
                         bhuvaneshm.developer@gmail.com
                     </a>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdZVMdYrRjue9n7jfGaS7UjwwdS7pDzC3eVGG9u9wMX3e7jA/viewform" target="_blank" class="btn btn-primary" style="font-size: 18px; background: #fff; color: #000;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdZVMdYrRjue9n7jfGaS7UjwwdS7pDzC3eVGG9u9wMX3e7jA/viewform"
+                        target="_blank" class="btn btn-primary" style="font-size: 18px; background: #fff; color: #000;">
                         Send a Message
                     </a>
                 </div>
@@ -343,22 +392,60 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://github.com/bhuvanesh-m-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://linkedin.com/in/bhuvaneshm-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://twitter.com/bhuvaneshm06" target="_blank" rel="noopener noreferrer">Twitter</a>
-                <a href="https://www.hackerrank.com/profile/bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">Hackerrank</a>
-                <a href="https://leetcode.com/u/bhuvaneshm_dev/" target="_blank" rel="noopener noreferrer">LeetCode</a>
-                <a href="https://www.youtube.com/@bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">YouTube</a>
-                <a href="https://dev.to/bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">Dev.to</a>
-                <a href="https://learn.microsoft.com/en-us/users/bhuvaneshm/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a>
-                <a href="https://g.dev/bhuvaneshm" target="_blank" rel="noopener noreferrer">Google Developer</a>
-            </div>
-            <p>&copy; <span id="currentYear"></span> Bhuvanesh M. All rights reserved.</p>
-        </div>
-    </footer>
+<footer class="site-footer" aria-label="Footer">
+  <div class="footer-container">
+
+    <div class="connect-section">
+      <h3 class="footer-title">🔭 Tech Nebula Archives</h3><br>
+      <nav class="connect-nav" aria-label="Resources">
+
+        <a href="https://bhuvanesh-m-dev.github.io/technical-articals-about-my-projects" target="_blank" rel="noopener noreferrer">Technical articles About My Projects</a>
+        <a href="https://bhuvanesh-m-dev.github.io/certificates/" target="_blank">Certificates</a>
+        <a href="https://bhuvanesh-m-dev.github.io/youtube-demos" target="_blank" rel="noopener noreferrer">YouTube demos</a>
+        
+      </nav>
+    </div>
+
+    <div class="connect-section">
+      <h4 class="connect-title">📡 Signal to Bhuvanesh</h4><br>
+      <nav class="connect-nav" aria-label="Signal to Bhuvanesh">
+        <a href="https://www.linkedin.com/in/bhuvaneshm-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://x.com/bhuvaneshm06" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://dev.to/bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">Dev.to</a>
+      </nav>
+    </div>
+
+    <div class="connect-section">
+      <h4 class="connect-title">🚀 Code Starbase</h4><br>
+      <nav class="connect-nav" aria-label="Code Starbase">
+        <a href="https://github.com/bhuvanesh-m-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.hackerrank.com/profile/bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">HackerRank</a>
+        <a href="https://leetcode.com/u/bhuvaneshm_dev/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+      </nav>
+    </div>
+
+    <div class="connect-section">
+      <h4 class="connect-title">🛰️ Orbit Programs</h4><br>
+      <nav class="connect-nav" aria-label="Orbit Programs">
+        <a href="https://g.dev/bhuvaneshm" target="_blank" rel="noopener noreferrer">Google Developer</a>
+        <a href="https://learn.microsoft.com/en-us/users/bhuvaneshm/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a>
+      </nav>
+    </div>
+
+    <div class="connect-section">
+      <h4 class="connect-title">🌠 Cosmic Tech Broadcasts</h4><br>
+      <nav class="connect-nav" aria-label="Showcase">
+        <a href="https://www.youtube.com/@bhuvaneshm_dev" target="_blank" rel="noopener noreferrer">YouTube — Demos & Tutorials</a>
+      </nav>
+    </div>
+
+  </div>
+
+  <div class="footer-copyright">
+    <p>&copy; <span id="currentYear"></span> Bhuvanesh M. All rights reserved.</p>
+  </div>
+</footer>
+
 
     <!-- Glossy Scroll-to-Top Button -->
     <button id="scrollToTop" class="scroll-top-btn" aria-label="Scroll to top">
@@ -376,4 +463,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
