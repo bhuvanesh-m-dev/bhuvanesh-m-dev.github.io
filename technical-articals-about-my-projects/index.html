@@ -3,419 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Articles About My Projects</title>
+    <title>Project Press Tracker</title>
     <style>
-        :root {
-            --bg-color: #050510;
-            --text-color: #e0e0e0;
-            --accent-color: #64ffda;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --card-hover-bg: rgba(255, 255, 255, 0.08);
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-family);
-            overflow-x: hidden;
+            background-color: #111;
+            color: #ddd;
+            font-family: "Courier New", Courier, monospace;
             line-height: 1.6;
-        }
-
-        /* Cosmic Background */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 50px 160px, #fff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 200px 30px, #eee, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
-            background-repeat: repeat;
-            background-size: 200px 200px;
-            opacity: 0.3;
-            animation: twinkle 5s infinite;
-        }
-        
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            50% { opacity: 0.5; }
-            100% { opacity: 0.3; }
-        }
-
-        /* Nebula Effect */
-        .nebula {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(30, 0, 60, 0.4), transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 30, 60, 0.4), transparent 40%);
-            filter: blur(60px);
-        }
-
-        /* Glassmorphism Utilities */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Typography & Layout */
-        section {
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        h1, h2, h3 {
-            color: #fff;
-            margin-bottom: 1rem;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
         h1 {
-            font-size: 3rem;
-            background: linear-gradient(90deg, #fff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
+        .entry {
+            margin-bottom: 40px;
+            padding-left: 20px;
+            border-left: 1px solid #444;
         }
 
-        p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
-        }
-
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        a:hover {
+        .entry-header {
+            font-weight: bold;
             color: #fff;
-            text-decoration: underline;
+            margin-bottom: 5px;
+            text-transform: uppercase;
         }
 
-        .btn {
+        .meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            margin-bottom: 15px;
+        }
+
+        a.button {
             display: inline-block;
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            color: #fff;
+            border: 1px solid #555;
+            color: #aaa;
+            padding: 5px 10px;
             text-decoration: none;
+            font-size: 14px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
         }
 
-        .btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: rgba(100, 255, 218, 0.15);
-            border-color: rgba(100, 255, 218, 0.4);
-        }
-        
-        .btn-primary:hover {
-             background: rgba(100, 255, 218, 0.25);
-        }
-
-        /* Hero Section */
-        #hero {
-            padding: 160px 0 100px;
-            text-align: center;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Featured Articles */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .article-card {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-        
-        .article-card:hover {
-            transform: translateY(-5px);
-            background: var(--card-hover-bg);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .platform-badge {
-            display: inline-block;
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            margin-bottom: 1rem;
-            color: #bbb;
-        }
-
-        /* Global Recognition */
-        .recognition-panel {
-            padding: 3rem;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .recognition-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .recognition-item {
-            text-align: center;
-        }
-
-        .recognition-item .flag {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .recognition-item h4 {
+        a.button:hover {
+            border-color: #fff;
             color: #fff;
-            margin-bottom: 0.2rem;
+            background: #222;
         }
 
-        .recognition-item span {
-            font-size: 0.9rem;
-            color: var(--accent-color);
+        .poll-section {
+            background: #1a1a1a;
+            padding: 20px;
+            border: 1px solid #333;
+            margin-top: 50px;
         }
 
-        /* Discussion Section */
-        .discussion-section {
-            text-align: center;
+        ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        .discussion-panel {
-            padding: 4rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+        li {
+            margin-bottom: 10px;
         }
         
-        .cta-group {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        /* Footer */
-        .footer-panel {
-            padding: 4rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-            margin-bottom: 4rem; /* Bottom spacing */
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.8rem; }
-            
-            .recognition-grid {
-                flex-direction: column;
-                gap: 2rem;
-            }
+        /* Mobile */
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            h1 { font-size: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="stars"></div>
-    <div class="nebula"></div>
+    <h1>Global Project Tracker</h1>
 
-    <main class="container">
+    <!-- Spain -->
+    <div class="entry">
+        <div class="entry-header">Q2B Studio</div>
+        <div class="meta">REGION: SPAIN (EU) | PROJECT: ZENTORA OS</div>
+        <div class="content">
+            Software firm analyzing the architecture of ZentoraOS. Validated the offline-AI approach as a robust standard for privacy-first computing.
+        </div>
+        <a href="https://q2bstudio.com/nuestro-blog/16620/presentando-zentoraos" class="button" target="_blank">Read Analysis</a>
+    </div>
+
+    <!-- India -->
+    <div class="entry">
+        <div class="entry-header">GyaanSetu AI</div>
+        <div class="meta">REGION: INDIA (ASIA) | PROJECT: ZENTORA OS</div>
+        <div class="content">
+            Featured as a high-impact student initiative bridging open-source development with practical AI utility.
+        </div>
+        <a href="https://www.linkedin.com/posts/gyaansetu-ai_zentoraos-receives-global-recognition-from-activity-7391817944730726401-3ilr/" class="button" target="_blank">View Feature</a>
+    </div>
+
+    <!-- Vietnam -->
+    <div class="entry">
+        <div class="entry-header">KiteMetric</div>
+        <div class="meta">REGION: VIETNAM (ASIA) | PROJECT: OOLIT MODULE</div>
+        <div class="content">
+            Technical review of the Oolit module (CosmoTalker ecosystem). Recognized for performance optimization on low-resource hardware.
+        </div>
+        <a href="https://kitemetric.com/blogs/introducing-oolit-your-offline-ai-chatbot-for-cosmotalker" class="button" target="_blank">Read Review</a>
+    </div>
+
+    <!-- Poll -->
+    <div class="poll-section">
+        <div class="entry-header" style="border:none;">Community Data</div>
+        <p style="margin-bottom: 20px; color: #aaa;">
+            Helping fine-tune ZentoraOS for developers. Which OS is your daily driver?
+        </p>
         
-        <!-- Hero Section -->
-        <section id="hero">
-            <h1>Technical Articles & Project Insights</h1>
-            <p class="hero-subtitle">Deep dives into my open-source projects, OS development, AI tools, and real-world engineering experiences.</p>
-        </section>
+        <ul>
+            <li>
+                <a href="https://dev.to/bhuvaneshm_dev/which-os-is-best-for-developers-macos-windows-or-linux-36nd" target="_blank" class="button" style="width: 100%; text-align: left; border-color: #333;">
+                    [ ] Linux (The Powerhouse)
+                </a>
+            </li>
+            <li>
+                <a href="https://dev.to/bhuvaneshm_dev/which-os-is-best-for-developers-macos-windows-or-linux-36nd" target="_blank" class="button" style="width: 100%; text-align: left; border-color: #333;">
+                    [ ] Windows (The Standard)
+                </a>
+            </li>
+            <li>
+                <a href="https://dev.to/bhuvaneshm_dev/which-os-is-best-for-developers-macos-windows-or-linux-36nd" target="_blank" class="button" style="width: 100%; text-align: left; border-color: #333;">
+                    [ ] macOS (The Unix Polish)
+                </a>
+            </li>
+        </ul>
+        <div style="font-size: 12px; color: #666; margin-top: 10px;">
+            Redirects to Dev.to discussion thread.
+        </div>
+    </div>
 
-        <!-- Featured Articles Section -->
-        <section id="articles">
-            <h2>Featured Discussions</h2>
-            <div class="grid">
-                <!-- Article 1 -->
-                <article class="glass-panel article-card">
-                    <div>
-                        <span class="platform-badge">Global Recognition</span>
-                        <h3>ZentoraOS Receives Global Recognition from Q2B Studio</h3>
-                        <p>Exploring how a niche OS project gained attention from international studios and the technical decisions behind it.</p>
-                    </div>
-                    <a href="#" class="read-more">Read Article &rarr;</a>
-                </article>
+    <div style="margin-top: 50px; font-size: 12px; color: #444; text-align: center;">
+        ARCHIVE GENERATED 2025 | BHUVANESH M.
+    </div>
 
-                <!-- Article 2 -->
-                <article class="glass-panel article-card">
-                    <div>
-                        <span class="platform-badge">AI / ML</span>
-                        <h3>Oolit: From Offline AI Function to ML Model</h3>
-                        <p>A technical breakdown of transforming a local Python function into a scalable machine learning model for edge devices.</p>
-                    </div>
-                    <a href="#" class="read-more">Read Article &rarr;</a>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="glass-panel article-card">
-                    <div>
-                        <span class="platform-badge">Community Debate</span>
-                        <h3>Which OS Is Best for Developers: macOS, Windows, or Linux?</h3>
-                        <p>An unbiased analysis of the three major operating systems from a full-stack developer's perspective.</p>
-                    </div>
-                    <a href="#" class="read-more">Read Article &rarr;</a>
-                </article>
-
-                <!-- Article 4 -->
-                <article class="glass-panel article-card">
-                    <div>
-                        <span class="platform-badge">Engineering</span>
-                        <h3>Building Offline AI for Real-World Use Cases</h3>
-                        <p>Challenges and solutions in deploying AI applications that function without an internet connection.</p>
-                    </div>
-                    <a href="#" class="read-more">Read Article &rarr;</a>
-                </article>
-            </div>
-        </section>
-
-        <!-- Global Recognition Highlight -->
-        <section id="recognition">
-            <h2>Global Impact</h2>
-            <div class="glass-panel recognition-panel">
-                <p>My projects have been organically featured by global tech organizations across multiple countries.</p>
-                <div class="recognition-grid">
-                    <div class="recognition-item">
-                        <span class="flag">🇪🇸</span>
-                        <h4>Spain</h4>
-                        <span>Q2B Studio (ZentoraOS)</span>
-                    </div>
-                    <div class="recognition-item">
-                        <span class="flag">🇻🇳</span>
-                        <h4>Vietnam</h4>
-                        <span>KiteMetric (Oolit)</span>
-                    </div>
-                    <div class="recognition-item">
-                        <span class="flag">🇮🇳</span>
-                        <h4>India</h4>
-                        <span>GyaanSetu AI</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Discussion & Community Section -->
-        <section id="discussion">
-            <div class="glass-panel discussion-panel">
-                <h2>Discuss: Which OS Do You Use?</h2>
-                <p>I actively engage with the developer community. Share your thoughts, ask questions, and join the technical discussion.</p>
-                <div class="cta-group">
-                    <a href="#" class="btn btn-primary">Join the Discussion on Dev.to</a>
-                    <a href="#" class="btn">View Conversations</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer Panel -->
-        <section id="contact">
-            <div class="glass-panel footer-panel">
-                <h2>Let's Build Together</h2>
-                <p>Recruiters & collaborators — explore how I think, build, and communicate through code.</p>
-                <div class="cta-group">
-                    <a href="https://github.com" class="btn">View GitHub</a>
-                    <a href="https://linkedin.com" class="btn">Connect on LinkedIn</a>
-                    <a href="mailto:contact@example.com" class="btn btn-primary">Contact Me</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <script>
-        // Smooth scroll animation using Intersection Observer
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Only animate once
-                    }
-                });
-            }, observerOptions);
-
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
 </body>
 </html>
