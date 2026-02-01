@@ -392,6 +392,140 @@
         </section>
     </main>
 
+    <!-- START OF SNIPPET -->
+<section id="orbit-visitor-counter" style="position: relative; width: 100%; min-height: 50vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at top left, #1a1a2e, #16213e, #0f3460); overflow: hidden; font-family: 'Segoe UI', sans-serif; color: white; padding: 2rem;">
+
+    <!-- EMBEDDED CSS -->
+    <style>
+        /* Scoped styles for the orbit counter section */
+        #orbit-visitor-counter .glass-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 1;
+            opacity: 0.6;
+            animation: orbit-float 8s infinite ease-in-out alternate;
+            pointer-events: none;
+        }
+
+        #orbit-visitor-counter .orb-primary {
+            width: 200px; height: 200px;
+            background: linear-gradient(180deg, #ff00cc, #333399);
+            top: 10%; left: 10%;
+        }
+
+        #orbit-visitor-counter .orb-secondary {
+            width: 150px; height: 150px;
+            background: linear-gradient(180deg, #00d2ff, #3a7bd5);
+            bottom: 10%; right: 10%;
+            animation-delay: -4s;
+        }
+
+        @keyframes orbit-float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        #orbit-visitor-counter .glass-card {
+            position: relative;
+            z-index: 2;
+            padding: 2.5rem 3.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.1s ease;
+            transform-style: preserve-3d;
+            text-align: center;
+        }
+
+        /* Inner shine effect */
+        #orbit-visitor-counter .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 20px;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 70%);
+            pointer-events: none;
+        }
+
+        #orbit-visitor-counter h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            line-height: 1.5;
+        }
+
+        #orbit-visitor-counter h3 img {
+            vertical-align: middle;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        #orbit-visitor-counter h3 img:hover {
+            transform: scale(1.1);
+        }
+
+        #orbit-visitor-counter a {
+            text-decoration: none;
+            display: inline-flex;
+        }
+    </style>
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div class="glass-orb orb-primary"></div>
+    <div class="glass-orb orb-secondary"></div>
+
+    <!-- MAIN CONTENT CARD -->
+    <div class="glass-card" id="tiltCard">
+        <h3 align="center">
+            🌌 You are my &nbsp;
+            <a href="https://github.com/bhuvanesh-m-dev">
+            <img src="https://count.getloli.com/@bhuvanesh-m-dev?name=bhuvanesh-m-dev&theme=ai-1&padding=13&offset=0&align=top&scale=1&pixelated=1&darkmode=auto" alt="bhuvanesh-m-dev" />
+            </a>
+            &nbsp; visitor. Welcome to my orbit.
+        </h3>
+    </div>
+
+    <!-- EMBEDDED JS -->
+    <script>
+        (function() {
+            const section = document.getElementById('orbit-visitor-counter');
+            const card = document.getElementById('tiltCard');
+
+            section.addEventListener('mousemove', (e) => {
+                const rect = section.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element.
+                const y = e.clientY - rect.top;  // y position within the element.
+                
+                // Calculate rotation (center of section is origin)
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max 10deg rotation
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            section.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        })();
+    </script>
+</section>
+<!-- END OF SNIPPET -->
+
 <footer class="site-footer" aria-label="Footer">
   <div class="footer-container">
 
