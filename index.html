@@ -392,88 +392,68 @@
         </section>
     </main>
 
-    <!-- START OF SNIPPET -->
-<section id="orbit-visitor-counter" style="position: relative; width: 100%; min-height: 50vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at top left, #1a1a2e, #16213e, #0f3460); overflow: hidden; font-family: 'Segoe UI', sans-serif; color: white; padding: 2rem;">
+<!-- START OF SNIPPET -->
+<section id="orbit-visitor-counter" style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center; background: transparent; overflow: hidden; font-family: 'Segoe UI', sans-serif; color: white; padding: 20px;">
 
     <!-- EMBEDDED CSS -->
     <style>
         /* Scoped styles for the orbit counter section */
-        #orbit-visitor-counter .glass-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 1;
-            opacity: 0.6;
-            animation: orbit-float 8s infinite ease-in-out alternate;
-            pointer-events: none;
-        }
-
-        #orbit-visitor-counter .orb-primary {
-            width: 200px; height: 200px;
-            background: linear-gradient(180deg, #ff00cc, #333399);
-            top: 10%; left: 10%;
-        }
-
-        #orbit-visitor-counter .orb-secondary {
-            width: 150px; height: 150px;
-            background: linear-gradient(180deg, #00d2ff, #3a7bd5);
-            bottom: 10%; right: 10%;
-            animation-delay: -4s;
-        }
-
-        @keyframes orbit-float {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-20px) scale(1.1); }
-        }
-
         #orbit-visitor-counter .glass-card {
             position: relative;
             z-index: 2;
-            padding: 2.5rem 3.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            /* Compact padding for a smaller footprint */
+            padding: 4.25rem 6.4rem;
+            /* Pure transparent background */
+            background: rgba(255, 255, 255, 0);
+            /* Subtle blur for glass feel */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            /* Thin, crisp border */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            /* Subtle shadow */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.1s ease;
             transform-style: preserve-3d;
             text-align: center;
         }
 
-        /* Inner shine effect */
+        /* Clean shine effect (Monochrome) */
         #orbit-visitor-counter .glass-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 20px;
-            background: radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 70%);
+            border-radius: 50px;
+            /* White shine, fading to transparent */
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 40%);
             pointer-events: none;
         }
 
         #orbit-visitor-counter h3 {
             margin: 0;
-            font-size: 1.4rem;
-            font-weight: 300;
+            font-size: 4.1rem; /* Scaled up 1.7x */
+            font-weight: 400;
             letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.95);
+            color: rgba(255, 255, 255, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 34px;
             line-height: 1.5;
         }
 
         #orbit-visitor-counter h3 img {
+            height: 85px; /* Scaled up 1.7x */
             vertical-align: middle;
-            border-radius: 6px;
+            border-radius: 12px;
             transition: transform 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            opacity: 0.85; /* Slightly muted to blend better */
         }
 
         #orbit-visitor-counter h3 img:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
+            opacity: 1;
         }
 
         #orbit-visitor-counter a {
@@ -482,11 +462,7 @@
         }
     </style>
 
-    <!-- BACKGROUND ELEMENTS -->
-    <div class="glass-orb orb-primary"></div>
-    <div class="glass-orb orb-secondary"></div>
-
-    <!-- MAIN CONTENT CARD -->
+    <!-- MAIN CONTENT CARD (No Background Orbs) -->
     <div class="glass-card" id="tiltCard">
         <h3 align="center">
             🌌 You are my &nbsp;
