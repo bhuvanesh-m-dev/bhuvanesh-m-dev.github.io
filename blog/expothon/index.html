@@ -6,9 +6,10 @@
     <title>EXPOThon 2K26 & Zenskin by ZentoraOS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -16,74 +17,55 @@
                         display: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#6366f1',
-                        secondary: '#8b5cf6',
-                        accent: '#06b6d4',
-                        dark: '#0f172a',
-                        darker: '#020617',
-                        surface: '#1e293b',
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(30px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        black: '#000000',
+                        white: '#ffffff',
+                        gray: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                            950: '#0a0a0a',
                         }
                     }
                 }
             }
         }
     </script>
+    
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --text-primary: #000000;
+            --text-secondary: #525252;
+            --border: #e5e5e5;
+            --accent: #000000;
+        }
+        
+        .dark {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #a3a3a3;
+            --border: #262626;
+            --accent: #ffffff;
+        }
+        
         body {
-            background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e1b4b 100%);
-            color: #e2e8f0;
-            overflow-x: hidden;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .glass-strong {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .gradient-text-cyan {
-            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hover-lift {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
-        }
+        .doc-border { border-color: var(--border); }
+        .doc-text-secondary { color: var(--text-secondary); }
+        .doc-bg-secondary { background-color: var(--bg-secondary); }
         
         .nav-item {
             position: relative;
@@ -96,11 +78,10 @@
             left: -20px;
             top: 50%;
             transform: translateY(-50%);
-            width: 3px;
+            width: 2px;
             height: 0;
-            background: linear-gradient(to bottom, #6366f1, #06b6d4);
+            background: var(--text-primary);
             transition: height 0.3s ease;
-            border-radius: 2px;
         }
         
         .nav-item.active::before,
@@ -110,25 +91,43 @@
         
         .nav-item.active,
         .nav-item:hover {
-            color: #6366f1;
+            color: var(--text-primary);
             padding-left: 10px;
         }
         
-        .code-block {
-            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
-            border-left: 4px solid #6366f1;
-            font-family: 'Fira Code', monospace;
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .gallery-overlay {
-            background: rgba(2, 6, 23, 0.98);
-            backdrop-filter: blur(20px);
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .hover-lift:hover {
+            box-shadow: 0 20px 40px -15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .code-block {
+            background-color: var(--bg-secondary);
+            border-left: 2px solid var(--text-primary);
+            font-family: monospace;
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .image-card {
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
             cursor: pointer;
         }
         
@@ -153,48 +152,20 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #6366f1, #06b6d4, #8b5cf6);
+            height: 2px;
+            background: var(--text-primary);
             z-index: 100;
             transition: width 0.1s;
         }
         
-        .feature-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--text-secondary); }
         
-        .timeline-dot {
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-        
-        .section-fade {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .section-fade.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .gallery-overlay {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
         }
     </style>
 </head>
@@ -203,66 +174,63 @@
     <!-- Scroll Progress Indicator -->
     <div class="scroll-indicator" id="scrollBar"></div>
 
-    <!-- Reading Progress Top Bar -->
-    <div class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary z-50 transform origin-left scale-x-0 transition-transform duration-100" id="readingProgress"></div>
-
     <!-- Navigation Toggle (Mobile) -->
-    <button id="navToggle" class="fixed top-6 left-6 z-40 lg:hidden glass p-3 rounded-full hover-lift">
-        <i class="fas fa-bars text-xl"></i>
+    <button id="navToggle" class="fixed top-6 left-6 z-40 lg:hidden p-3 rounded-full border doc-border doc-bg-secondary hover-lift">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
 
     <!-- Sidebar Navigation -->
-    <nav id="sidebar" class="fixed left-0 top-0 h-full w-80 glass-strong transform -translate-x-full lg:translate-x-0 transition-transform duration-300 z-30 overflow-y-auto border-r border-white/10">
+    <nav id="sidebar" class="fixed left-0 top-0 h-full w-80 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 z-30 overflow-y-auto border-r doc-border doc-bg-secondary">
         <div class="p-8">
             <div class="mb-8">
                 <div class="flex items-center gap-3 mb-2">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                        <i class="fas fa-rocket text-white text-lg"></i>
+                    <div class="w-10 h-10 rounded-lg border doc-border flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <span class="font-display font-bold text-xl tracking-tight">BlogReader</span>
                 </div>
-                <p class="text-sm text-slate-400">EXPOThon 2K26 Experience</p>
+                <p class="text-sm doc-text-secondary">EXPOThon 2K26 Experience</p>
             </div>
 
             <div class="space-y-1">
-                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4 px-4">Contents</div>
+                <div class="text-xs font-semibold doc-text-secondary uppercase tracking-wider mb-4 px-4">Contents</div>
                 
-                <a href="#hero" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-home w-6"></i> Introduction
+                <a href="#hero" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> Introduction
                 </a>
-                <a href="#what-is-zenskin" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-leaf w-6"></i> What is Zenskin?
+                <a href="#what-is-zenskin" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> What is Zenskin?
                 </a>
-                <a href="#core-idea" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-lightbulb w-6"></i> The Core Idea
+                <a href="#core-idea" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> The Core Idea
                 </a>
-                <a href="#features" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-star w-6"></i> Core Features
+                <a href="#features" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> Core Features
                 </a>
-                <a href="#installation" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-terminal w-6"></i> Installation
+                <a href="#installation" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> Installation
                 </a>
-                <a href="#presentation" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-presentation w-6"></i> EXPOThon Presentation
+                <a href="#presentation" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> EXPOThon Presentation
                 </a>
-                <a href="#recognition" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-trophy w-6"></i> Recognition
+                <a href="#recognition" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> Recognition
                 </a>
-                <a href="#future" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-road w-6"></i> Future Direction
+                <a href="#future" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> Future Direction
                 </a>
-                <a href="#gallery" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium text-slate-300 hover:text-white transition-all">
-                    <i class="fas fa-images w-6"></i> Gallery
+                <a href="#gallery" class="nav-item block py-3 px-4 rounded-lg text-sm font-medium doc-text-secondary hover:text-[var(--text-primary)] transition-all">
+                    <span class="w-6 inline-block">+</span> Gallery
                 </a>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-white/10">
-                <div class="flex items-center gap-3 text-sm text-slate-400">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xs">
+            <div class="mt-12 pt-8 border-t doc-border">
+                <div class="flex items-center gap-3 text-sm doc-text-secondary">
+                    <div class="w-8 h-8 rounded-full border doc-border flex items-center justify-center text-xs font-bold">
                         BM
                     </div>
                     <div>
-                        <div class="text-white font-medium">Bhuvanesh M</div>
+                        <div class="text-[var(--text-primary)] font-medium">Bhuvanesh M</div>
                         <div class="text-xs">Developer</div>
                     </div>
                 </div>
@@ -274,368 +242,349 @@
     <main class="lg:ml-80 min-h-screen relative">
         
         <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-20">
-            <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-slow"></div>
-                <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 rounded-full blur-3xl"></div>
-            </div>
-
+        <section id="hero" class="min-h-screen flex items-center justify-center relative px-6 py-20 border-b doc-border">
             <div class="max-w-4xl mx-auto text-center relative z-10 section-fade">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 hover-lift cursor-pointer">
-                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                    <span class="text-sm font-medium text-slate-300">26 February 2026</span>
-                    <span class="text-slate-500">|</span>
-                    <span class="text-sm text-slate-300">Dept. of CSE</span>
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border doc-border mb-8 hover-lift cursor-pointer">
+                    <span class="w-2 h-2 rounded-full bg-[var(--text-primary)] animate-pulse"></span>
+                    <span class="text-sm font-medium doc-text-secondary">26 February 2026</span>
+                    <span class="doc-text-secondary">|</span>
+                    <span class="text-sm doc-text-secondary">Dept. of CSE</span>
                 </div>
 
                 <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                    <span class="block text-white mb-2">EXPOThon 2K26</span>
-                    <span class="gradient-text-cyan">&</span>
-                    <span class="block gradient-text mt-2">Zenskin by ZentoraOS</span>
+                    <span class="block mb-2">EXPOThon 2K26</span>
+                    <span class="block text-[var(--text-secondary)]">&</span>
+                    <span class="block mt-2">Zenskin by ZentoraOS</span>
                 </h1>
 
-                <p class="text-xl md:text-2xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+                <p class="text-xl md:text-2xl doc-text-secondary mb-8 max-w-2xl mx-auto leading-relaxed">
                     Extending the Zentora Experience — Transforming Linux desktops without reinstallation
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4 mb-12">
-                    <div class="glass px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
-                        <i class="fab fa-linux text-accent"></i>
+                    <div class="border doc-border px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
                         <span class="text-sm font-medium">Linux</span>
                     </div>
-                    <div class="glass px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
-                        <i class="fas fa-palette text-secondary"></i>
+                    <div class="border doc-border px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
                         <span class="text-sm font-medium">Theming</span>
                     </div>
-                    <div class="glass px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
-                        <i class="fas fa-robot text-primary"></i>
+                    <div class="border doc-border px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
                         <span class="text-sm font-medium">AI Integration</span>
                     </div>
-                    <div class="glass px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
-                        <i class="fas fa-code-branch text-green-400"></i>
+                    <div class="border doc-border px-6 py-3 rounded-full flex items-center gap-2 hover-lift">
                         <span class="text-sm font-medium">Open Source</span>
                     </div>
                 </div>
 
-                <button onclick="document.getElementById('what-is-zenskin').scrollIntoView({behavior: 'smooth'})" class="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-full font-semibold text-white overflow-hidden hover-lift">
-                    <span class="relative z-10">Start Reading</span>
-                    <i class="fas fa-arrow-down relative z-10 group-hover:translate-y-1 transition-transform"></i>
-                    <div class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <button onclick="document.getElementById('what-is-zenskin').scrollIntoView({behavior: 'smooth'})" class="group relative inline-flex items-center gap-2 px-8 py-4 border-2 border-[var(--text-primary)] rounded-full font-semibold hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all hover-lift">
+                    <span>Start Reading</span>
+                    <svg class="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                 </button>
             </div>
 
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <i class="fas fa-chevron-down text-slate-500 text-2xl"></i>
+                <svg class="w-6 h-6 doc-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </div>
         </section>
 
         <!-- Content Container -->
-        <div class="max-w-4xl mx-auto px-6 pb-32 space-y-24">
+        <div class="max-w-4xl mx-auto px-6 pb-32 space-y-24 pt-16">
 
             <!-- What is Zenskin -->
-            <section id="what-is-zenskin" class="section-fade">
+            <section id="what-is-zenskin" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-2xl">
-                        🐧
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        Z
                     </div>
                     <div>
-                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">What is Zenskin?</h2>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold">What is Zenskin?</h2>
                         <div class="flex items-center gap-2 mt-1">
-                            <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold border border-yellow-500/30">BETA</span>
-                            <span class="text-slate-400 text-sm">Open Source Project</span>
+                            <span class="px-3 py-1 rounded-full border doc-border text-xs font-bold">BETA</span>
+                            <span class="doc-text-secondary text-sm">Open Source Project</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="prose prose-invert prose-lg max-w-none">
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        <strong class="text-white">Zenskin</strong> is an open-source project developed by <span class="text-accent font-semibold">Bhuvanesh M</span> (GitHub: bhuvanesh-m-dev). It is designed to bring the distinctive aesthetic and functional elements of ZentoraOS to any existing Linux distribution — <span class="text-primary font-semibold">without requiring a full OS reinstallation</span>.
+                <div class="space-y-6">
+                    <p class="text-lg leading-relaxed doc-text-secondary">
+                        <strong class="text-[var(--text-primary)]">Zenskin</strong> is an open-source project developed by <span class="font-semibold">Bhuvanesh M</span> (GitHub: bhuvanesh-m-dev). It is designed to bring the distinctive aesthetic and functional elements of ZentoraOS to any existing Linux distribution — <span class="font-semibold">without requiring a full OS reinstallation</span>.
                     </p>
 
-                    <div class="grid md:grid-cols-2 gap-4 my-8">
-                        <a href="https://bhuvanesh-m-dev.github.io/zenskin/" target="_blank" class="glass p-6 rounded-2xl hover-lift group block">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="https://bhuvanesh-m-dev.github.io/zenskin/" target="_blank" class="border doc-border p-6 rounded-lg hover-lift group block">
                             <div class="flex items-center justify-between mb-2">
-                                <i class="fas fa-external-link-alt text-primary text-xl"></i>
-                                <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity text-primary"></i>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </div>
-                            <div class="text-sm text-slate-400 mb-1">Official Project Page</div>
-                            <div class="text-white font-semibold truncate">bhuvanesh-m-dev.github.io/zenskin</div>
+                            <div class="text-sm doc-text-secondary mb-1">Official Project Page</div>
+                            <div class="font-semibold truncate">bhuvanesh-m-dev.github.io/zenskin</div>
                         </a>
-                        <a href="https://github.com/bhuvanesh-m-dev/zenskin" target="_blank" class="glass p-6 rounded-2xl hover-lift group block">
+                        <a href="https://github.com/bhuvanesh-m-dev/zenskin" target="_blank" class="border doc-border p-6 rounded-lg hover-lift group block">
                             <div class="flex items-center justify-between mb-2">
-                                <i class="fab fa-github text-white text-xl"></i>
-                                <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity text-white"></i>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </div>
-                            <div class="text-sm text-slate-400 mb-1">GitHub Repository</div>
-                            <div class="text-white font-semibold truncate">github.com/bhuvanesh-m-dev/zenskin</div>
+                            <div class="text-sm doc-text-secondary mb-1">GitHub Repository</div>
+                            <div class="font-semibold truncate">github.com/bhuvanesh-m-dev/zenskin</div>
                         </a>
                     </div>
                 </div>
             </section>
 
             <!-- The Core Idea -->
-            <section id="core-idea" class="section-fade">
+            <section id="core-idea" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-600 flex items-center justify-center text-2xl">
-                        💡
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        !
                     </div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white">The Core Idea</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold">The Core Idea</h2>
                 </div>
 
-                <div class="glass rounded-3xl p-8 md:p-12 border border-white/10 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                    
-                    <p class="text-lg text-slate-300 mb-8 relative z-10">
-                        Instead of asking users to migrate to an entirely new operating system, Zenskin enables them to <span class="text-white font-semibold">transform their current Linux desktop</span> into a modern, visually refined, and optionally AI-enhanced environment — while preserving:
+                <div class="border doc-border rounded-lg p-8 md:p-12 relative overflow-hidden">
+                    <p class="text-lg doc-text-secondary mb-8 relative z-10">
+                        Instead of asking users to migrate to an entirely new operating system, Zenskin enables them to <span class="font-semibold text-[var(--text-primary)]">transform their current Linux desktop</span> into a modern, visually refined, and optionally AI-enhanced environment — while preserving:
                     </p>
 
                     <div class="grid md:grid-cols-2 gap-6 relative z-10">
-                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0">
-                                <i class="fas fa-database"></i>
+                        <div class="flex items-start gap-4 p-4 rounded-lg border doc-border">
+                            <div class="w-10 h-10 rounded-lg border doc-border flex items-center justify-center flex-shrink-0 font-bold text-sm">
+                                01
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white mb-1">Existing Data</h4>
-                                <p class="text-sm text-slate-400">All your files remain intact</p>
+                                <h4 class="font-semibold mb-1">Existing Data</h4>
+                                <p class="text-sm doc-text-secondary">All your files remain intact</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 flex-shrink-0">
-                                <i class="fas fa-cubes"></i>
+                        <div class="flex items-start gap-4 p-4 rounded-lg border doc-border">
+                            <div class="w-10 h-10 rounded-lg border doc-border flex items-center justify-center flex-shrink-0 font-bold text-sm">
+                                02
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white mb-1">Installed Software</h4>
-                                <p class="text-sm text-slate-400">Applications remain untouched</p>
+                                <h4 class="font-semibold mb-1">Installed Software</h4>
+                                <p class="text-sm doc-text-secondary">Applications remain untouched</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400 flex-shrink-0">
-                                <i class="fas fa-sliders-h"></i>
+                        <div class="flex items-start gap-4 p-4 rounded-lg border doc-border">
+                            <div class="w-10 h-10 rounded-lg border doc-border flex items-center justify-center flex-shrink-0 font-bold text-sm">
+                                03
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white mb-1">Personal Configs</h4>
-                                <p class="text-sm text-slate-400">Settings are preserved</p>
+                                <h4 class="font-semibold mb-1">Personal Configs</h4>
+                                <p class="text-sm doc-text-secondary">Settings are preserved</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <div class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-red-400 flex-shrink-0">
-                                <i class="fas fa-shield-alt"></i>
+                        <div class="flex items-start gap-4 p-4 rounded-lg border doc-border">
+                            <div class="w-10 h-10 rounded-lg border doc-border flex items-center justify-center flex-shrink-0 font-bold text-sm">
+                                04
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white mb-1">System Stability</h4>
-                                <p class="text-sm text-slate-400">Core system remains secure</p>
+                                <h4 class="font-semibold mb-1">System Stability</h4>
+                                <p class="text-sm doc-text-secondary">Core system remains secure</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-8 flex flex-wrap gap-3 relative z-10">
-                        <span class="px-4 py-2 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 text-sm font-medium">
-                            <i class="fas fa-check-circle mr-2"></i>Safe
+                        <span class="px-4 py-2 rounded-full border doc-border text-sm font-medium">
+                            [x] Safe
                         </span>
-                        <span class="px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm font-medium">
-                            <i class="fas fa-puzzle-piece mr-2"></i>Modular
+                        <span class="px-4 py-2 rounded-full border doc-border text-sm font-medium">
+                            [x] Modular
                         </span>
-                        <span class="px-4 py-2 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 text-sm font-medium">
-                            <i class="fas fa-undo mr-2"></i>Fully Reversible
+                        <span class="px-4 py-2 rounded-full border doc-border text-sm font-medium">
+                            [x] Fully Reversible
                         </span>
                     </div>
                 </div>
             </section>
 
             <!-- Core Features -->
-            <section id="features" class="section-fade">
+            <section id="features" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center text-2xl">
-                        ⭐
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        *
                     </div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Core Features</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold">Core Features</h2>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Feature 1 -->
-                    <div class="feature-card rounded-2xl p-6 hover-lift group">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            🎨
+                    <div class="border doc-border rounded-lg p-6 hover-lift">
+                        <div class="w-14 h-14 rounded-lg border doc-border flex items-center justify-center text-xl mb-4 font-bold">
+                            A
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Modern Zentora-Style Interface</h3>
-                        <ul class="space-y-2 text-slate-400 text-sm">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Contemporary themes</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Updated icon packs</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Fluid animations</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Multiple color presets</li>
+                        <h3 class="text-xl font-bold mb-2">Modern Zentora-Style Interface</h3>
+                        <ul class="space-y-2 doc-text-secondary text-sm">
+                            <li class="flex items-center gap-2">[+] Contemporary themes</li>
+                            <li class="flex items-center gap-2">[+] Updated icon packs</li>
+                            <li class="flex items-center gap-2">[+] Fluid animations</li>
+                            <li class="flex items-center gap-2">[+] Multiple color presets</li>
                         </ul>
                     </div>
 
-                    <!-- Feature 2 -->
-                    <div class="feature-card rounded-2xl p-6 hover-lift group">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            ⚡
+                    <div class="border doc-border rounded-lg p-6 hover-lift">
+                        <div class="w-14 h-14 rounded-lg border doc-border flex items-center justify-center text-xl mb-4 font-bold">
+                            1
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">One-Click Installation</h3>
-                        <ul class="space-y-2 text-slate-400 text-sm">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Minimal manual intervention</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Clean setup workflow</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> 2-5 minute setup time</li>
+                        <h3 class="text-xl font-bold mb-2">One-Click Installation</h3>
+                        <ul class="space-y-2 doc-text-secondary text-sm">
+                            <li class="flex items-center gap-2">[+] Minimal manual intervention</li>
+                            <li class="flex items-center gap-2">[+] Clean setup workflow</li>
+                            <li class="flex items-center gap-2">[+] 2-5 minute setup time</li>
                         </ul>
                     </div>
 
-                    <!-- Feature 3 -->
-                    <div class="feature-card rounded-2xl p-6 hover-lift group">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            🤖
+                    <div class="border doc-border rounded-lg p-6 hover-lift">
+                        <div class="w-14 h-14 rounded-lg border doc-border flex items-center justify-center text-xl mb-4 font-bold">
+                            AI
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Optional Offline AI Integration</h3>
-                        <ul class="space-y-2 text-slate-400 text-sm">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Local AI via Ollama</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> PyLlamaUI interface</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Privacy-focused LLM usage</li>
+                        <h3 class="text-xl font-bold mb-2">Optional Offline AI Integration</h3>
+                        <ul class="space-y-2 doc-text-secondary text-sm">
+                            <li class="flex items-center gap-2">[+] Local AI via Ollama</li>
+                            <li class="flex items-center gap-2">[+] PyLlamaUI interface</li>
+                            <li class="flex items-center gap-2">[+] Privacy-focused LLM usage</li>
                         </ul>
                     </div>
 
-                    <!-- Feature 4 -->
-                    <div class="feature-card rounded-2xl p-6 hover-lift group">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            🧩
+                    <div class="border doc-border rounded-lg p-6 hover-lift">
+                        <div class="w-14 h-14 rounded-lg border doc-border flex items-center justify-center text-xl mb-4 font-bold">
+                            M
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Modular Setup</h3>
-                        <ul class="space-y-2 text-slate-400 text-sm">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Themes only</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> AI tools only</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Full transformation package</li>
+                        <h3 class="text-xl font-bold mb-2">Modular Setup</h3>
+                        <ul class="space-y-2 doc-text-secondary text-sm">
+                            <li class="flex items-center gap-2">[+] Themes only</li>
+                            <li class="flex items-center gap-2">[+] AI tools only</li>
+                            <li class="flex items-center gap-2">[+] Full transformation package</li>
                         </ul>
                     </div>
 
-                    <!-- Feature 5 -->
-                    <div class="feature-card rounded-2xl p-6 hover-lift group">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            🔄
+                    <div class="border doc-border rounded-lg p-6 hover-lift">
+                        <div class="w-14 h-14 rounded-lg border doc-border flex items-center justify-center text-xl mb-4 font-bold">
+                            B
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Automatic Backup & Restore</h3>
-                        <ul class="space-y-2 text-slate-400 text-sm">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Pre-installation backup</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> One-click restore</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Original state recovery</li>
+                        <h3 class="text-xl font-bold mb-2">Automatic Backup & Restore</h3>
+                        <ul class="space-y-2 doc-text-secondary text-sm">
+                            <li class="flex items-center gap-2">[+] Pre-installation backup</li>
+                            <li class="flex items-center gap-2">[+] One-click restore</li>
+                            <li class="flex items-center gap-2">[+] Original state recovery</li>
                         </ul>
                     </div>
 
-                    <!-- Feature 6 -->
-                    <div class="feature-card rounded-2xl p-6 hover-lift group">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            🐧
+                    <div class="border doc-border rounded-lg p-6 hover-lift">
+                        <div class="w-14 h-14 rounded-lg border doc-border flex items-center justify-center text-xl mb-4 font-bold">
+                            L
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Cross-Distro Compatibility</h3>
-                        <ul class="space-y-2 text-slate-400 text-sm">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Debian/Ubuntu-based</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Arch-based</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Fedora/Red Hat derivatives</li>
+                        <h3 class="text-xl font-bold mb-2">Cross-Distro Compatibility</h3>
+                        <ul class="space-y-2 doc-text-secondary text-sm">
+                            <li class="flex items-center gap-2">[+] Debian/Ubuntu-based</li>
+                            <li class="flex items-center gap-2">[+] Arch-based</li>
+                            <li class="flex items-center gap-2">[+] Fedora/Red Hat derivatives</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
             <!-- Installation -->
-            <section id="installation" class="section-fade">
+            <section id="installation" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-2xl">
-                        🛠
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        $
                     </div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Installation</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold">Installation</h2>
                 </div>
 
-                <div class="glass rounded-2xl p-8 border border-white/10">
-                    <p class="text-slate-300 mb-6">
+                <div class="border doc-border rounded-lg p-8">
+                    <p class="doc-text-secondary mb-6">
                         For Debian-based distributions, installation is performed via a single terminal command:
                     </p>
 
-                    <div class="code-block rounded-xl p-6 overflow-x-auto relative group">
-                        <button onclick="copyCode()" class="absolute top-4 right-4 p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-slate-400 hover:text-white">
-                            <i class="fas fa-copy"></i>
+                    <div class="code-block rounded-lg p-6 overflow-x-auto relative group">
+                        <button onclick="copyCode()" class="absolute top-4 right-4 p-2 rounded-lg border doc-border hover:bg-[var(--bg-secondary)] transition-colors doc-text-secondary hover:text-[var(--text-primary)]">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                         </button>
-                        <code class="text-sm md:text-base text-blue-300 block" id="installCode">
+                        <code class="text-sm md:text-base block" id="installCode">
 wget -O zenskin.deb https://github.com/bhuvanesh-m-dev/zenskin/releases/download/zenskin-v1.deb/zenskin.deb  && \
 sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i zenskin.deb) && zenskin
                         </code>
                     </div>
 
                     <div class="mt-6 grid md:grid-cols-3 gap-4">
-                        <div class="flex items-center gap-3 p-4 rounded-lg bg-white/5">
-                            <i class="fas fa-download text-primary"></i>
-                            <span class="text-sm text-slate-300">Downloads .deb package</span>
+                        <div class="flex items-center gap-3 p-4 rounded-lg border doc-border">
+                            <span class="font-bold">01</span>
+                            <span class="text-sm doc-text-secondary">Downloads .deb package</span>
                         </div>
-                        <div class="flex items-center gap-3 p-4 rounded-lg bg-white/5">
-                            <i class="fas fa-cogs text-secondary"></i>
-                            <span class="text-sm text-slate-300">Installs dependencies</span>
+                        <div class="flex items-center gap-3 p-4 rounded-lg border doc-border">
+                            <span class="font-bold">02</span>
+                            <span class="text-sm doc-text-secondary">Installs dependencies</span>
                         </div>
-                        <div class="flex items-center gap-3 p-4 rounded-lg bg-white/5">
-                            <i class="fas fa-rocket text-accent"></i>
-                            <span class="text-sm text-slate-300">Launches interface</span>
+                        <div class="flex items-center gap-3 p-4 rounded-lg border doc-border">
+                            <span class="font-bold">03</span>
+                            <span class="text-sm doc-text-secondary">Launches interface</span>
                         </div>
                     </div>
 
-                    <div class="mt-6 p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-start gap-3">
-                        <i class="fas fa-clock text-yellow-500 mt-1"></i>
-                        <div class="text-sm text-slate-300">
-                            <span class="text-yellow-400 font-semibold">Typical setup time:</span> 2–5 minutes. Support for additional distributions may be expanded in future releases.
+                    <div class="mt-6 p-4 rounded-lg border doc-border flex items-start gap-3">
+                        <span class="font-bold mt-1">i</span>
+                        <div class="text-sm doc-text-secondary">
+                            <span class="font-semibold text-[var(--text-primary)]">Typical setup time:</span> 2–5 minutes. Support for additional distributions may be expanded in future releases.
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Presentation -->
-            <section id="presentation" class="section-fade">
+            <section id="presentation" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl">
-                        🎯
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        P
                     </div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Presenting at EXPOThon 2K26</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold">Presenting at EXPOThon 2K26</h2>
                 </div>
 
-                <div class="space-y-6 text-slate-300 leading-relaxed">
+                <div class="space-y-6 doc-text-secondary leading-relaxed">
                     <p>
                         At EXPOThon 2K26, I demonstrated Zenskin's capabilities to the faculty panel and fellow students. The presentation covered:
                     </p>
 
                     <div class="grid md:grid-cols-2 gap-4">
-                        <div class="glass p-6 rounded-xl border-l-4 border-primary">
-                            <h4 class="text-white font-semibold mb-2">Live Desktop Transformation</h4>
-                            <p class="text-sm text-slate-400">Real-time theming and visual changes</p>
+                        <div class="border doc-border p-6 rounded-lg border-l-2">
+                            <h4 class="text-[var(--text-primary)] font-semibold mb-2">Live Desktop Transformation</h4>
+                            <p class="text-sm">Real-time theming and visual changes</p>
                         </div>
-                        <div class="glass p-6 rounded-xl border-l-4 border-secondary">
-                            <h4 class="text-white font-semibold mb-2">Modular Installation Logic</h4>
-                            <p class="text-sm text-slate-400">Selective component installation</p>
+                        <div class="border doc-border p-6 rounded-lg border-l-2">
+                            <h4 class="text-[var(--text-primary)] font-semibold mb-2">Modular Installation Logic</h4>
+                            <p class="text-sm">Selective component installation</p>
                         </div>
-                        <div class="glass p-6 rounded-xl border-l-4 border-accent">
-                            <h4 class="text-white font-semibold mb-2">Backup & Restoration</h4>
-                            <p class="text-sm text-slate-400">Safety mechanisms and recovery</p>
+                        <div class="border doc-border p-6 rounded-lg border-l-2">
+                            <h4 class="text-[var(--text-primary)] font-semibold mb-2">Backup & Restoration</h4>
+                            <p class="text-sm">Safety mechanisms and recovery</p>
                         </div>
-                        <div class="glass p-6 rounded-xl border-l-4 border-green-400">
-                            <h4 class="text-white font-semibold mb-2">AI Integration Concept</h4>
-                            <p class="text-sm text-slate-400">Offline LLM capabilities</p>
+                        <div class="border doc-border p-6 rounded-lg border-l-2">
+                            <h4 class="text-[var(--text-primary)] font-semibold mb-2">AI Integration Concept</h4>
+                            <p class="text-sm">Offline LLM capabilities</p>
                         </div>
                     </div>
 
-                    <div class="glass rounded-2xl p-8 mt-8 border border-white/10">
-                        <h3 class="text-xl font-semibold text-white mb-4">Faculty Evaluation Criteria</h3>
+                    <div class="border doc-border rounded-lg p-8 mt-8">
+                        <h3 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Faculty Evaluation Criteria</h3>
                         <div class="grid md:grid-cols-4 gap-4">
-                            <div class="text-center p-4 rounded-lg bg-white/5">
-                                <i class="fas fa-sitemap text-2xl text-primary mb-2"></i>
-                                <div class="text-sm font-medium text-white">Architectural Clarity</div>
+                            <div class="text-center p-4 rounded-lg border doc-border">
+                                <div class="text-2xl font-bold mb-2">A</div>
+                                <div class="text-sm font-medium">Architectural Clarity</div>
                             </div>
-                            <div class="text-center p-4 rounded-lg bg-white/5">
-                                <i class="fas fa-check-circle text-2xl text-green-400 mb-2"></i>
-                                <div class="text-sm font-medium text-white">Feasibility</div>
+                            <div class="text-center p-4 rounded-lg border doc-border">
+                                <div class="text-2xl font-bold mb-2">F</div>
+                                <div class="text-sm font-medium">Feasibility</div>
                             </div>
-                            <div class="text-center p-4 rounded-lg bg-white/5">
-                                <i class="fas fa-expand-arrows-alt text-2xl text-secondary mb-2"></i>
-                                <div class="text-sm font-medium text-white">Scalability</div>
+                            <div class="text-center p-4 rounded-lg border doc-border">
+                                <div class="text-2xl font-bold mb-2">S</div>
+                                <div class="text-sm font-medium">Scalability</div>
                             </div>
-                            <div class="text-center p-4 rounded-lg bg-white/5">
-                                <i class="fas fa-shield-alt text-2xl text-accent mb-2"></i>
-                                <div class="text-sm font-medium text-white">System Safety</div>
+                            <div class="text-center p-4 rounded-lg border doc-border">
+                                <div class="text-2xl font-bold mb-2">SS</div>
+                                <div class="text-sm font-medium">System Safety</div>
                             </div>
                         </div>
-                        <p class="mt-6 text-center text-slate-400 italic">
+                        <p class="mt-6 text-center italic">
                             "This was not just a UI project — it was a system-level enhancement tool."
                         </p>
                     </div>
@@ -643,64 +592,62 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             </section>
 
             <!-- Recognition -->
-            <section id="recognition" class="section-fade">
+            <section id="recognition" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-2xl">
-                        🏆
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        T
                     </div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Recognition & Team</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold">Recognition & Team</h2>
                 </div>
 
-                <div class="glass rounded-3xl p-8 md:p-12 border border-white/10 relative overflow-hidden">
-                    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl"></div>
-                    
-                    <p class="text-lg text-slate-300 mb-8 relative z-10">
+                <div class="border doc-border rounded-lg p-8 md:p-12 relative overflow-hidden">
+                    <p class="text-lg doc-text-secondary mb-8 relative z-10">
                         Receiving recognition at EXPOThon 2K26 reflected our commitment to:
                     </p>
 
                     <div class="grid md:grid-cols-2 gap-6 mb-12 relative z-10">
-                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <i class="fas fa-brain text-2xl text-primary"></i>
-                            <span class="text-white font-medium">Structured Problem-Solving</span>
+                        <div class="flex items-center gap-4 p-4 rounded-lg border doc-border">
+                            <span class="text-2xl font-bold">S</span>
+                            <span class="font-medium">Structured Problem-Solving</span>
                         </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <i class="fas fa-users text-2xl text-secondary"></i>
-                            <span class="text-white font-medium">Collaborative Teamwork</span>
+                        <div class="flex items-center gap-4 p-4 rounded-lg border doc-border">
+                            <span class="text-2xl font-bold">C</span>
+                            <span class="font-medium">Collaborative Teamwork</span>
                         </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <i class="fas fa-bug text-2xl text-red-400"></i>
-                            <span class="text-white font-medium">Real-time Debugging</span>
+                        <div class="flex items-center gap-4 p-4 rounded-lg border doc-border">
+                            <span class="text-2xl font-bold">D</span>
+                            <span class="font-medium">Real-time Debugging</span>
                         </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                            <i class="fas fa-microphone text-2xl text-accent"></i>
-                            <span class="text-white font-medium">Clear Technical Articulation</span>
+                        <div class="flex items-center gap-4 p-4 rounded-lg border doc-border">
+                            <span class="text-2xl font-bold">A</span>
+                            <span class="font-medium">Clear Technical Articulation</span>
                         </div>
                     </div>
 
-                    <div class="border-t border-white/10 pt-8 relative z-10">
-                        <h3 class="text-lg font-semibold text-white mb-6">Team Members</h3>
+                    <div class="border-t doc-border pt-8 relative z-10">
+                        <h3 class="text-lg font-semibold text-[var(--text-primary)] mb-6">Team Members</h3>
                         <div class="grid md:grid-cols-3 gap-6">
-                            <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 hover-lift">
-                                <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-xl font-bold text-white mb-3">
+                            <div class="text-center p-6 rounded-lg border doc-border hover-lift">
+                                <div class="w-16 h-16 mx-auto rounded-full border doc-border flex items-center justify-center text-xl font-bold mb-3">
                                     BM
                                 </div>
-                                <div class="font-semibold text-white">Bhuvanesh M</div>
-                                <div class="text-sm text-slate-400 mt-1">Lead Developer</div>
-                                <div class="text-xs text-primary mt-2">Open Source Initiative</div>
+                                <div class="font-semibold">Bhuvanesh M</div>
+                                <div class="text-sm doc-text-secondary mt-1">Lead Developer</div>
+                                <div class="text-xs mt-2">Open Source Initiative</div>
                             </div>
-                            <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 hover-lift">
-                                <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-secondary to-purple-600 flex items-center justify-center text-xl font-bold text-white mb-3">
+                            <div class="text-center p-6 rounded-lg border doc-border hover-lift">
+                                <div class="w-16 h-16 mx-auto rounded-full border doc-border flex items-center justify-center text-xl font-bold mb-3">
                                     MK
                                 </div>
-                                <div class="font-semibold text-white">Mohan Kumar S</div>
-                                <div class="text-sm text-slate-400 mt-1">Presentation & Refinement</div>
+                                <div class="font-semibold">Mohan Kumar S</div>
+                                <div class="text-sm doc-text-secondary mt-1">Presentation & Refinement</div>
                             </div>
-                            <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 hover-lift">
-                                <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-accent to-blue-600 flex items-center justify-center text-xl font-bold text-white mb-3">
+                            <div class="text-center p-6 rounded-lg border doc-border hover-lift">
+                                <div class="w-16 h-16 mx-auto rounded-full border doc-border flex items-center justify-center text-xl font-bold mb-3">
                                     MS
                                 </div>
-                                <div class="font-semibold text-white">Mohammed Mohideen Saajid S</div>
-                                <div class="text-sm text-slate-400 mt-1">Team Support</div>
+                                <div class="font-semibold">Mohammed Mohideen Saajid S</div>
+                                <div class="text-sm doc-text-secondary mt-1">Team Support</div>
                             </div>
                         </div>
                     </div>
@@ -708,138 +655,137 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             </section>
 
             <!-- Future -->
-            <section id="future" class="section-fade">
+            <section id="future" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-purple-600 flex items-center justify-center text-2xl">
-                        🚀
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        F
                     </div>
                     <div>
-                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Future Direction</h2>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold">Future Direction</h2>
                         <div class="flex items-center gap-2 mt-1">
-                            <span class="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-bold">Active Development</span>
-                            <span class="text-slate-400 text-sm">Beta v1</span>
+                            <span class="px-2 py-1 rounded border doc-border text-xs font-bold">Active Development</span>
+                            <span class="doc-text-secondary text-sm">Beta v1</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="relative">
-                    <!-- Timeline -->
-                    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent hidden md:block"></div>
+                    <div class="absolute left-4 top-0 bottom-0 w-px bg-[var(--border)] hidden md:block"></div>
                     
                     <div class="space-y-8">
                         <div class="relative md:pl-12 group">
-                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-primary timeline-dot flex items-center justify-center hidden md:flex">
-                                <i class="fas fa-box text-white text-xs"></i>
+                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full border doc-border flex items-center justify-center hidden md:flex text-xs font-bold">
+                                1
                             </div>
-                            <div class="glass rounded-xl p-6 border border-white/10 hover-lift">
-                                <h3 class="text-lg font-semibold text-white mb-2">Expanded Cross-Distro Packaging</h3>
-                                <p class="text-slate-400 text-sm">Supporting more Linux distributions beyond Debian-based systems</p>
-                            </div>
-                        </div>
-
-                        <div class="relative md:pl-12 group">
-                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-secondary timeline-dot flex items-center justify-center hidden md:flex">
-                                <i class="fas fa-eye text-white text-xs"></i>
-                            </div>
-                            <div class="glass rounded-xl p-6 border border-white/10 hover-lift">
-                                <h3 class="text-lg font-semibold text-white mb-2">Enhanced UI Preview System</h3>
-                                <p class="text-slate-400 text-sm">Visual previews before applying themes</p>
+                            <div class="border doc-border rounded-lg p-6 hover-lift">
+                                <h3 class="text-lg font-semibold mb-2">Expanded Cross-Distro Packaging</h3>
+                                <p class="doc-text-secondary text-sm">Supporting more Linux distributions beyond Debian-based systems</p>
                             </div>
                         </div>
 
                         <div class="relative md:pl-12 group">
-                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-accent timeline-dot flex items-center justify-center hidden md:flex">
-                                <i class="fas fa-puzzle-piece text-white text-xs"></i>
+                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full border doc-border flex items-center justify-center hidden md:flex text-xs font-bold">
+                                2
                             </div>
-                            <div class="glass rounded-xl p-6 border border-white/10 hover-lift">
-                                <h3 class="text-lg font-semibold text-white mb-2">Plugin Architecture</h3>
-                                <p class="text-slate-400 text-sm">Extensible plugin system for custom features</p>
-                            </div>
-                        </div>
-
-                        <div class="relative md:pl-12 group">
-                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-pink-500 timeline-dot flex items-center justify-center hidden md:flex">
-                                <i class="fas fa-users text-white text-xs"></i>
-                            </div>
-                            <div class="glass rounded-xl p-6 border border-white/10 hover-lift">
-                                <h3 class="text-lg font-semibold text-white mb-2">Community Theme Repository</h3>
-                                <p class="text-slate-400 text-sm">User-contributed themes and configurations</p>
+                            <div class="border doc-border rounded-lg p-6 hover-lift">
+                                <h3 class="text-lg font-semibold mb-2">Enhanced UI Preview System</h3>
+                                <p class="doc-text-secondary text-sm">Visual previews before applying themes</p>
                             </div>
                         </div>
 
                         <div class="relative md:pl-12 group">
-                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-yellow-500 timeline-dot flex items-center justify-center hidden md:flex">
-                                <i class="fas fa-robot text-white text-xs"></i>
+                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full border doc-border flex items-center justify-center hidden md:flex text-xs font-bold">
+                                3
                             </div>
-                            <div class="glass rounded-xl p-6 border border-white/10 hover-lift">
-                                <h3 class="text-lg font-semibold text-white mb-2">Further AI Integration</h3>
-                                <p class="text-slate-400 text-sm">Enhanced local LLM capabilities and AI-assisted configuration</p>
+                            <div class="border doc-border rounded-lg p-6 hover-lift">
+                                <h3 class="text-lg font-semibold mb-2">Plugin Architecture</h3>
+                                <p class="doc-text-secondary text-sm">Extensible plugin system for custom features</p>
+                            </div>
+                        </div>
+
+                        <div class="relative md:pl-12 group">
+                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full border doc-border flex items-center justify-center hidden md:flex text-xs font-bold">
+                                4
+                            </div>
+                            <div class="border doc-border rounded-lg p-6 hover-lift">
+                                <h3 class="text-lg font-semibold mb-2">Community Theme Repository</h3>
+                                <p class="doc-text-secondary text-sm">User-contributed themes and configurations</p>
+                            </div>
+                        </div>
+
+                        <div class="relative md:pl-12 group">
+                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full border doc-border flex items-center justify-center hidden md:flex text-xs font-bold">
+                                5
+                            </div>
+                            <div class="border doc-border rounded-lg p-6 hover-lift">
+                                <h3 class="text-lg font-semibold mb-2">Further AI Integration</h3>
+                                <p class="doc-text-secondary text-sm">Enhanced local LLM capabilities and AI-assisted configuration</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-12 p-8 rounded-2xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 text-center">
-                    <i class="fas fa-code-branch text-4xl text-primary mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-2">Open Source Contribution</h3>
-                    <p class="text-slate-300 mb-4">Feedback and contributions are encouraged to refine the tool further.</p>
-                    <a href="https://github.com/bhuvanesh-m-dev/zenskin" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-white font-medium transition-colors">
-                        <i class="fab fa-github"></i> Contribute on GitHub
+                <div class="mt-12 p-8 rounded-lg border doc-border text-center">
+                    <div class="text-4xl font-bold mb-4">&lt;/&gt;</div>
+                    <h3 class="text-xl font-bold mb-2">Open Source Contribution</h3>
+                    <p class="doc-text-secondary mb-4">Feedback and contributions are encouraged to refine the tool further.</p>
+                    <a href="https://github.com/bhuvanesh-m-dev/zenskin" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 border doc-border rounded-full font-medium hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Contribute on GitHub
                     </a>
                 </div>
             </section>
 
             <!-- Final Reflection -->
-            <section class="section-fade">
-                <div class="glass rounded-3xl p-8 md:p-12 border border-white/10 text-center relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+            <section class="section-fade scroll-mt-20">
+                <div class="border doc-border rounded-lg p-8 md:p-12 text-center relative overflow-hidden">
                     <div class="relative z-10">
-                        <div class="text-4xl mb-6">🔥</div>
-                        <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-6">Final Reflection</h2>
-                        <blockquote class="text-xl md:text-2xl text-slate-300 italic leading-relaxed mb-8">
+                        <div class="text-4xl font-bold mb-6">***</div>
+                        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">Final Reflection</h2>
+                        <blockquote class="text-xl md:text-2xl doc-text-secondary italic leading-relaxed mb-8">
                             "EXPOThon 2K26 was more than a presentation — it marked a transition from academic experimentation to product-oriented development."
                         </blockquote>
-                        <div class="max-w-2xl mx-auto space-y-4 text-slate-400">
+                        <div class="max-w-2xl mx-auto space-y-4 doc-text-secondary">
                             <p>Zenskin by ZentoraOS represents a larger vision:</p>
-                            <p class="text-white font-semibold text-lg">Instead of forcing users to change operating systems, we can bring the experience to them.</p>
-                            <p class="text-primary font-semibold">This is not just theming. It is structured desktop transformation — safe, modular, and intelligent.</p>
-                            <p class="text-secondary font-bold text-xl mt-6">And this is only the beginning.</p>
+                            <p class="font-semibold text-lg text-[var(--text-primary)]">Instead of forcing users to change operating systems, we can bring the experience to them.</p>
+                            <p class="font-semibold">This is not just theming. It is structured desktop transformation — safe, modular, and intelligent.</p>
+                            <p class="font-bold text-xl mt-6">And this is only the beginning.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Gallery Section -->
-            <section id="gallery" class="section-fade">
+            <section id="gallery" class="section-fade scroll-mt-20">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-400 to-rose-600 flex items-center justify-center text-2xl">
-                        🖼️
+                    <div class="w-12 h-12 rounded-lg border doc-border flex items-center justify-center text-2xl font-bold">
+                        G
                     </div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Event Gallery</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold">Event Gallery</h2>
                 </div>
 
-                <p class="text-slate-400 mb-8">Click any image to view in full-screen gallery mode</p>
+                <p class="doc-text-secondary mb-8">Click any image to view in full-screen gallery mode</p>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="galleryGrid">
-                    <!-- Images will be populated by JS -->
+                    <!-- Images populated by JS -->
                 </div>
             </section>
 
         </div>
 
         <!-- Footer -->
-        <footer class="border-t border-white/10 py-12 px-6 mt-20">
+        <footer class="border-t doc-border py-12 px-6 mt-20">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="flex justify-center gap-6 mb-6">
-                    <a href="https://github.com/bhuvanesh-m-dev" target="_blank" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover-lift">
-                        <i class="fab fa-github text-xl"></i>
+                    <a href="https://github.com/bhuvanesh-m-dev" target="_blank" class="w-12 h-12 rounded-full border doc-border flex items-center justify-center doc-text-secondary hover:text-[var(--text-primary)] hover-lift">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     </a>
-                    <a href="https://bhuvanesh-m-dev.github.io/zenskin/" target="_blank" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover-lift">
-                        <i class="fas fa-globe text-xl"></i>
+                    <a href="https://bhuvanesh-m-dev.github.io/zenskin/" target="_blank" class="w-12 h-12 rounded-full border doc-border flex items-center justify-center doc-text-secondary hover:text-[var(--text-primary)] hover-lift">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                     </a>
                 </div>
-                <p class="text-slate-500 text-sm">
-                    © 2026 Zenskin by ZentoraOS. Built with passion for the Linux community.
+                <p class="doc-text-secondary text-sm">
+                    (c) 2026 Zenskin by ZentoraOS. Built with passion for the Linux community.
                 </p>
             </div>
         </footer>
@@ -847,34 +793,32 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
 
     <!-- Gallery Modal -->
     <div id="galleryModal" class="fixed inset-0 z-50 hidden gallery-overlay flex items-center justify-center">
-        <button onclick="closeGallery()" class="absolute top-6 right-6 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover-lift z-50">
-            <i class="fas fa-times text-xl"></i>
+        <button onclick="closeGallery()" class="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover-lift z-50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
         
-        <button onclick="prevImage()" class="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover-lift z-50 hidden md:flex">
-            <i class="fas fa-chevron-left"></i>
+        <button onclick="prevImage()" class="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover-lift z-50 hidden md:flex">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
         
-        <button onclick="nextImage()" class="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover-lift z-50 hidden md:flex">
-            <i class="fas fa-chevron-right"></i>
+        <button onclick="nextImage()" class="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover-lift z-50 hidden md:flex">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
 
         <div class="max-w-6xl max-h-[90vh] px-4 relative">
-            <img id="modalImage" src="" alt="Gallery Image" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+            <img id="modalImage" src="" alt="Gallery Image" class="max-w-full max-h-[85vh] object-contain rounded-lg">
             <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
                 <p id="imageCaption" class="text-white text-center font-medium"></p>
-                <p id="imageCounter" class="text-slate-400 text-center text-sm mt-1"></p>
+                <p id="imageCounter" class="text-gray-400 text-center text-sm mt-1"></p>
             </div>
         </div>
 
-        <!-- Mobile swipe hint -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-slate-400 text-sm md:hidden">
-            <i class="fas fa-hand-pointer mr-2"></i>Swipe to navigate
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-400 text-sm md:hidden">
+            Swipe to navigate
         </div>
     </div>
 
     <script>
-        // Image data
         const images = [
             { url: "https://raw.githubusercontent.com/bhuvanesh-m-dev/bhuvanesh-m-dev.github.io/refs/heads/main/blog/expothon/image/20260226_104606.jpg", caption: "EXPOThon 2K26 Event" },
             { url: "https://raw.githubusercontent.com/bhuvanesh-m-dev/bhuvanesh-m-dev.github.io/refs/heads/main/blog/expothon/image/20260226_115739.jpg", caption: "Project Demonstration" },
@@ -888,14 +832,13 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
 
         let currentImageIndex = 0;
 
-        // Initialize Gallery
         function initGallery() {
             const grid = document.getElementById('galleryGrid');
             images.forEach((img, index) => {
                 const div = document.createElement('div');
-                div.className = 'image-card aspect-square bg-surface';
+                div.className = 'image-card aspect-square bg-[var(--bg-secondary)] rounded-lg';
                 div.innerHTML = `
-                    <img src="${img.url}" alt="${img.caption}" class="w-full h-full object-cover transition-transform duration-500" loading="lazy">
+                    <img src="${img.url}" alt="${img.caption}" class="w-full h-full object-cover transition-transform duration-500 rounded-lg" loading="lazy">
                     <div class="absolute bottom-0 left-0 right-0 p-4 z-10 opacity-0 hover:opacity-100 transition-opacity">
                         <p class="text-white text-sm font-medium truncate">${img.caption}</p>
                     </div>
@@ -934,7 +877,6 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             updateModalImage();
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('galleryModal').classList.contains('hidden')) return;
             if (e.key === 'Escape') closeGallery();
@@ -942,7 +884,6 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             if (e.key === 'ArrowLeft') prevImage();
         });
 
-        // Touch/swipe support for mobile
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -960,33 +901,24 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             if (touchEndX > touchStartX + 50) prevImage();
         }
 
-        // Copy code function
         function copyCode() {
             const code = document.getElementById('installCode').innerText;
             navigator.clipboard.writeText(code).then(() => {
                 const btn = document.querySelector('.code-block button');
-                btn.innerHTML = '<i class=\"fas fa-check\"></i>';
-                btn.classList.add('text-green-400');
+                btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
                 setTimeout(() => {
-                    btn.innerHTML = '<i class=\"fas fa-copy\"></i>';
-                    btn.classList.remove('text-green-400');
+                    btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>';
                 }, 2000);
             });
         }
 
-        // Scroll progress
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('scrollBar').style.width = scrolled + '%';
-            
-            // Update reading progress
-            const progress = (winScroll / (document.documentElement.scrollHeight - window.innerHeight));
-            document.getElementById('readingProgress').style.transform = `scaleX(${progress})`;
         });
 
-        // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1002,7 +934,6 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
 
         document.querySelectorAll('.section-fade').forEach((el) => observer.observe(el));
 
-        // Navigation active state
         const sections = document.querySelectorAll('section[id]');
         const navItems = document.querySelectorAll('.nav-item');
 
@@ -1024,7 +955,6 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             });
         });
 
-        // Mobile nav toggle
         const navToggle = document.getElementById('navToggle');
         const sidebar = document.getElementById('sidebar');
         let navOpen = false;
@@ -1038,7 +968,6 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             }
         });
 
-        // Close mobile nav when clicking on a link
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', () => {
                 if (window.innerWidth < 1024) {
@@ -1048,11 +977,9 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
             });
         });
 
-        // Initialize
         initGallery();
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
@@ -1061,6 +988,25 @@ sudo dpkg -i zenskin.deb || (sudo apt --fix-broken install -y && sudo dpkg -i ze
                 }
             });
         });
+
+        // Theme toggle
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
     </script>
+<img src="https://count.getloli.com/@bhuvanesh-m-dev?name=bhuvanesh-m-dev&theme=ai-1&padding=0&offset=0&align=top&scale=0.1&pixelated=1&darkmode=auto" width="1" height="1" alt="" style="position:absolute;visibility:hidden;" />
+</body>
 </body>
 </html>
