@@ -99,7 +99,6 @@ const modal = document.getElementById('certModal');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
     renderStats();
     renderFilters();
     renderGallery();
@@ -107,25 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollEffects();
     initNavigation();
 });
-
-// Theme Management
-function initTheme() {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-}
-
-function toggleTheme() {
-    if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.theme = 'light';
-    } else {
-        document.documentElement.classList.add('dark');
-        localStorage.theme = 'dark';
-    }
-}
 
 // Render Statistics
 function renderStats() {
@@ -389,7 +369,7 @@ function initNavigation() {
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 // Close mobile nav
-                if (window.innerWidth < 1024) {
+                if (window.innerWidth < 768) {
                     sidebar.classList.add('-translate-x-full');
                     navOpen = false;
                 }
