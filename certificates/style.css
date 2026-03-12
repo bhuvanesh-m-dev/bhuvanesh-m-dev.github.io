@@ -556,6 +556,7 @@ body {
 }
 
 @media (min-width: 768px) {
+    .md\\:translate-x-0 { transform: translateX(0); }
     .md\\:block { display: block; }
     .md\\:flex { display: flex; }
     .md\\:grid { display: grid; }
@@ -579,4 +580,30 @@ body {
     .lg\\:hidden { display: none; }
     .lg\\:translate-x-0 { transform: translateX(0); }
     .lg\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Responsive Navigation - Sidebar always visible on desktop */
+@media (max-width: 767px) {
+    /* Hide sidebar on mobile */
+    #sidebar {
+        display: none;
+    }
+
+    /* Remove left margin on mobile */
+    main {
+        margin-left: 0 !important;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Show sidebar on desktop - always visible */
+    #sidebar {
+        display: block !important;
+        transform: none !important;
+    }
+
+    /* Ensure main content has left margin on desktop */
+    main {
+        margin-left: 20rem !important;
+    }
 }
