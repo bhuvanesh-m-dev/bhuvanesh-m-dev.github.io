@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Other Projects</title>
+    <!-- Importing Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importing a custom font for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* Light gray background */
+        }
+        /* Custom styles for image hover effects */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        
+        <!-- Section Title -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Building & Creating
+            </h2>
+            <p class="mt-4 max-w-3xl text-lg text-gray-600 mx-auto leading-relaxed">
+                I love to build. Whether it's crafting new user interfaces, exploring the boundaries of AI, or designing efficient tools, the process of bringing an idea to life is what drives me. Here are some of the other open-source projects and tools I've been building and refining.
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Project 1: PyLlamaUI -->
+            <a href="https://bhuvanesh-m-dev.github.io/pyllamaui/" target="_blank" rel="noopener noreferrer" class="project-card block bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <div class="relative w-full pt-[56.25%] bg-gray-100"> <!-- 16:9 Aspect Ratio -->
+                    <!-- Error fallback added in case image fails to load -->
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/pyllamaui/refs/heads/main/PyLlamaUI.png" 
+                        alt="PyLlamaUI Logo" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-4"
+                        onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=PyLlamaUI'"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-center text-center">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">PyLlamaUI</h3>
+                    <p class="text-sm text-gray-500 line-clamp-2">Visit Project Site &rarr;</p>
+                </div>
+            </a>
+
+            <!-- Project 2: CosmoTalker -->
+            <a href="https://bhuvanesh-m-dev.github.io/cosmotalker/" target="_blank" rel="noopener noreferrer" class="project-card block bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <div class="relative w-full pt-[56.25%] bg-gray-100">
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/cosmotalker/refs/heads/main/image/cosmotalker-logo.png" 
+                        alt="CosmoTalker Logo" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-4"
+                        onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=CosmoTalker'"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-center text-center">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">CosmoTalker</h3>
+                    <p class="text-sm text-gray-500 line-clamp-2">Visit Project Site &rarr;</p>
+                </div>
+            </a>
+
+            <!-- Project 3: Zenskin -->
+            <!-- Fixed URL: added https:// prefix -->
+            <a href="https://bhuvanesh-m-dev.github.io/zenskin/" target="_blank" rel="noopener noreferrer" class="project-card block bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <div class="relative w-full pt-[56.25%] bg-gray-100">
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/zenskin/refs/heads/main/assets/zenskin.png" 
+                        alt="Zenskin Logo" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-4"
+                        onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Zenskin'"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-center text-center">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Zenskin</h3>
+                    <p class="text-sm text-gray-500 line-clamp-2">Visit Project Site &rarr;</p>
+                </div>
+            </a>
+
+            <!-- Project 4: Setbian -->
+            <a href="https://bhuvanesh-m-dev.github.io/setbian/" target="_blank" rel="noopener noreferrer" class="project-card block bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <div class="relative w-full pt-[56.25%] bg-gray-100">
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/setbian/refs/heads/main/setbian.png" 
+                        alt="Setbian Logo" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-4"
+                        onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Setbian'"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-center text-center">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Setbian</h3>
+                    <p class="text-sm text-gray-500 line-clamp-2">Visit Project Site &rarr;</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+<img src="https://count.getloli.com/@bhuvanesh-m-dev?name=bhuvanesh-m-dev&theme=ai-1&padding=0&offset=0&align=top&scale=0.1&pixelated=1&darkmode=auto" width="1" height="1" alt="" style="position:absolute;visibility:hidden;" />
+</body>
+</html>
