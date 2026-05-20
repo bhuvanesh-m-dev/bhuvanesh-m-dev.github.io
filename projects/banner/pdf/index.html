@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>My Projects · Build & Create</title>
+    <!-- Tailwind CSS v3 + Inter Google Font -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+        /* Card hover effect: subtle lift and shadow */
+        .project-card {
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            will-change: transform;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.12), 0 6px 12px -6px rgba(0, 0, 0, 0.05);
+        }
+        /* Image container with consistent aspect ratio and soft gradient */
+        .img-wrapper {
+            background: linear-gradient(145deg, #f1f5f9, #eef2f8);
+            transition: background 0.2s;
+        }
+        /* Custom accessible focus outline for cards (even though no links, keep polish) */
+        .project-card:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            border-radius: 1rem;
+        }
+        /* Elegant badge styles */
+        .tech-badge {
+            background: #eef2ff;
+            color: #1e40af;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.7rem;
+            border-radius: 30px;
+            letter-spacing: -0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .description-text {
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        /* Make the grid responsive and clean */
+        @media (max-width: 640px) {
+            .description-text {
+                -webkit-line-clamp: 5;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <main class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        
+        <!-- SECTION HEADER – clean, minimal, only heading + short intro (no extra buttons) -->
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <!-- Subtle decorative icon + badge (just for style) -->
+            <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm px-4 py-1.5 rounded-full text-blue-700 text-sm font-medium mb-5 shadow-sm border border-blue-100">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 14.88a2 2 0 00-1.022.547M4 8h16M5 4h14a1 1 0 011 1v10a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z"></path>
+                </svg>
+                <span>open source creations</span>
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-5xl">
+                Building & Creating
+            </h1>
+            <div class="mt-4 h-1 w-16 bg-gradient-to-r from-blue-500 to-indigo-400 rounded-full mx-auto"></div>
+            <p class="mt-6 text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                I love to build. Whether it's crafting new user interfaces, exploring the boundaries of AI, or designing efficient tools, the process of bringing an idea to life is what drives me. Here are some of the other open-source projects and tools I've been building and refining.
+            </p>
+        </div>
+
+        <!-- PROJECT GRID – only headings, logos, short intro descriptions. No "Visit project site" / no URLs visible -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 md:gap-8">
+            
+            <!-- Project 1: CosmoTalker (only logo + title + description, no link) -->
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full cursor-default">
+                <div class="relative w-full pt-[56.25%] img-wrapper overflow-hidden bg-gray-50">
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/cosmotalker/refs/heads/main/image/cosmotalker-logo.png" 
+                        alt="CosmoTalker logo - astronomy python library" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-5 transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=CosmoTalker&font=inter'; this.onerror=null;"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <div class="flex items-center flex-wrap justify-between gap-2 mb-2">
+                        <h2 class="text-xl font-bold text-gray-900 tracking-tight">CosmoTalker</h2>
+                        <span class="tech-badge text-[11px]">🌟 astronomy</span>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed description-text">
+                        Award-winning offline-first Python astronomy library for querying planets, stars, science facts, and real-time space data — no internet required.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 2: Setbian – only heading, logo, short intro -->
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full cursor-default">
+                <div class="relative w-full pt-[56.25%] img-wrapper overflow-hidden bg-gray-50">
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/setbian/refs/heads/main/setbian.png" 
+                        alt="Setbian logo - Debian post-install tool" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-5"
+                        loading="lazy"
+                        onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=Setbian&font=inter'; this.onerror=null;"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <div class="flex items-center flex-wrap justify-between gap-2 mb-2">
+                        <h2 class="text-xl font-bold text-gray-900 tracking-tight">Setbian</h2>
+                        <span class="tech-badge bg-gray-100 text-gray-700">⚙️ Tkinter</span>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed description-text">
+                        Lightweight GUI-based Debian post-installation tool (Python + Tkinter) that simplifies fresh system setup by batch-installing essential apps, drivers, and utilities via a clean checkbox interface.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 3: PyLlamaUI – only heading, logo, intro (no link) -->
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full cursor-default">
+                <div class="relative w-full pt-[56.25%] img-wrapper overflow-hidden bg-gray-50">
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/pyllamaui/refs/heads/main/PyLlamaUI.png" 
+                        alt="PyLlamaUI - Python GUI for Ollama local LLMs" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-5"
+                        loading="lazy"
+                        onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=PyLlamaUI&font=inter'; this.onerror=null;"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <div class="flex items-center flex-wrap justify-between gap-2 mb-2">
+                        <h2 class="text-xl font-bold text-gray-900 tracking-tight">PyLlamaUI</h2>
+                        <span class="tech-badge bg-purple-50 text-purple-700">🦙 Ollama</span>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed description-text">
+                        Lightweight, open-source Python GUI for chatting with local LLMs via Ollama — fully offline, private, featuring model switching, prompt management, streaming response view, and clean interface.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 4: ZenSkin – portable experience pack (no link) -->
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col h-full cursor-default">
+                <div class="relative w-full pt-[56.25%] img-wrapper overflow-hidden bg-gray-50">
+                    <img 
+                        src="https://raw.githubusercontent.com/bhuvanesh-m-dev/zenskin/refs/heads/main/assets/zenskin.png" 
+                        alt="ZenSkin - portable linux experience pack" 
+                        class="absolute top-0 left-0 w-full h-full object-contain p-5"
+                        loading="lazy"
+                        onerror="this.src='https://placehold.co/600x400/1e293b/94a3b8?text=ZenSkin&font=inter'; this.onerror=null;"
+                    >
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <div class="flex items-center flex-wrap justify-between gap-2 mb-2">
+                        <h2 class="text-xl font-bold text-gray-900 tracking-tight">ZenSkin</h2>
+                        <span class="tech-badge bg-emerald-50 text-emerald-700">🐧 Linux</span>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed description-text">
+                        ZenSkin is a portable experience pack that brings ZentoraOS features, workflows, and aesthetics to any Linux distribution — seamless integration with minimal friction.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simple footer / decorative note – no external links, just a warm attribution -->
+        <div class="mt-16 text-center border-t border-gray-200/80 pt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-400">
+            <span class="inline-flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                <span>crafted with curiosity</span>
+            </span>
+            <span>•</span>
+            <span>open source spirit</span>
+            <span>•</span>
+            <span>always building</span>
+        </div>
+    </main>
+
+    <!-- lightweight script for image fallback consistency (no intrusive actions) -->
+    <script>
+        (function ensureImageFallback() {
+            const imgs = document.querySelectorAll('img');
+            imgs.forEach(img => {
+                img.addEventListener('error', function(e) {
+                    if (!this.dataset.fallbackAttempt && !this.src.includes('placehold.co')) {
+                        this.dataset.fallbackAttempt = 'true';
+                        this.src = 'https://placehold.co/600x400/eef2ff/3b82f6?text=✨&font=inter';
+                    }
+                });
+            });
+        })();
+    </script>
+  <img src="https://count.getloli.com/@bhuvanesh-m-dev?name=bhuvanesh-m-dev&theme=ai-1&padding=0&offset=0&align=top&scale=0.1&pixelated=1&darkmode=auto" width="1" height="1" alt="" style="position:absolute;visibility:hidden;" />
+</body>
+</html>
