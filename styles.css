@@ -346,6 +346,18 @@ body {
     font-weight: 600;
 }
 
+/* --- Badge Styling --- */
+.badge-item:hover .badge-wrapper img {
+    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.3)) brightness(1.1);
+    transform: scale(1.1);
+}
+
+.badge-item:hover .badge-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-10px);
+}
+
 
 
 /* --- Scroll to Top Button --- */
